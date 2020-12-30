@@ -14,7 +14,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
+        $categories = Category::orderBy('id','desc')->get();
+        return view('admin.categories.index',compact('categories'));
     }
 
     /**
@@ -24,7 +25,8 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+        
+        return view('admin.categories.create');
     }
 
     /**
@@ -35,7 +37,31 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+         //validation
+        $request->validate([
+            'name'=>'required|min:2',
+            'logo'=>'required|mimes:jpeg,png,jpg'
+        ]);
+
+        //upload
+        if($request->file()){
+
+            $fileName = time().'_'.$request->logo->getClientOriginalName();
+
+            $filePath = $request->file('logo')->storeAs('categoryimg',$fileName,'public');
+
+            $path = '/storage/'.$filePath;  
+        }
+
+        //store data
+        $category = new Category;
+        $category->name = $request->name ;
+        $category->logo = $path;
+        $category->save();
+
+        //redirect
+
+        return redirect()->route('categories.index');
     }
 
     /**
@@ -57,7 +83,7 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        //
+         return view('admin.categories.edit',compact('category'));
     }
 
     /**
@@ -69,7 +95,30 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category)
     {
-        //
+        $request->validate([
+            'name'=>'required|min:2',
+            'logo'=>'sometimes|mimes:jpeg,png,jpg'
+        ]);
+
+        //upload
+        if($request->file()){
+
+            $fileName = time().'_'.$request->photo->getClientOriginalName();
+
+            $filePath = $request->file('logo')->storeAs('categoryimg',$fileName,'public');
+
+            $path = '/storage/'.$filePath;  
+            $category->logo = $path;
+
+        }
+
+        //update data
+        $category->name = $request->name ;  
+        $category->save();
+
+        //redirect
+
+        return redirect()->route('categories.index');
     }
 
     /**
@@ -80,6 +129,7 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        //
+         $category->delete();
+        return redirect()->route('categories.index');
     }
 }

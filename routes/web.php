@@ -27,3 +27,8 @@ Route::get('order','MainController@order')->name('orderpage');
 
 Route::get('delivery','MainController@delivery')->name('deliverypage');
 
+//backend
+
+Route::resource('categories','CategoryController');
+Route::resource('brands','BrandController');
+Route::resource('subcategories','SubcategoryController');
