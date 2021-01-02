@@ -48,7 +48,7 @@ class LoginController extends Controller
                     return 'admin';
                 break;
             case 'sales_staff':
-                    return 'order';
+                    return 'sales';
                 break;
              case 'delivery':
                     return 'delivery';

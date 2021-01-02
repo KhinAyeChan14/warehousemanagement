@@ -14,7 +14,7 @@ class PriceStockController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.price_stocks.index');
     }
 
     /**

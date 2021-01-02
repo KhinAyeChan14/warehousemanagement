@@ -70,7 +70,11 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
         ]);
 
-        $user->assignRole('delivery');
+         if (str_contains($data['email'], 'sale')) 
+            $user->assignRole('sales_staff');
+        else
+            $user->assignRole('delivery');
+        
         return $user;
     }
 }

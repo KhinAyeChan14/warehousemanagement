@@ -2,6 +2,7 @@
 <html lang="en">
   <head>
     <!-- Required meta tags -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Purple Admin</title>
@@ -17,6 +18,7 @@
     <link rel="stylesheet" href="{{ asset('assets/css/style.css')}}">
     <!-- End layout styles -->
     <link rel="shortcut icon" href="{{ asset('assets/images/favicon.ico')}}" />
+
   </head>
   <body>
     <div class="container-scroller">
@@ -175,7 +177,47 @@
         <!-- partial:partials/_sidebar.html -->
         <nav class="sidebar sidebar-offcanvas" id="sidebar">
 
-         @yield('sidebarmenu')
+          <ul class="nav">
+            <li class="nav-item nav-profile">
+              <a href="#" class="nav-link">
+                <div class="nav-profile-image">
+                  <img src="assets/images/faces/face1.jpg" alt="profile">
+                  <span class="login-status online"></span>
+                  <!--change to offline or busy as needed-->
+                </div>
+                <div class="nav-profile-text d-flex flex-column">
+                  <span class="font-weight-bold mb-2">David Grey. H</span>
+                  <span class="text-secondary text-small">Sales Staff</span>
+                </div>
+                <i class="mdi mdi-bookmark-check text-success nav-profile-badge"></i>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{ route('salespage') }}">
+                <span class="menu-title">Ways</span>
+                <i class="mdi mdi-home menu-icon"></i>
+              </a>
+            </li>
+            
+            <li class="nav-item">
+              <a class="nav-link" href="{{ route('productpage') }}">
+                <span class="menu-title">Products</span>
+                <i class="mdi mdi-contacts menu-icon"></i>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{ route('customers.index') }}">
+                <span class="menu-title">Customers</span>
+                <i class="mdi mdi-contacts menu-icon"></i>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="pages/forms/basic_elements.html">
+                <span class="menu-title">Order History</span>
+                <i class="mdi mdi-format-list-bulleted menu-icon"></i>
+              </a>
+            </li>
+          </ul>
 
         </nav>
 
@@ -204,6 +246,28 @@
     <script src="{{ asset('assets/js/dashboard.js')}}"></script>
     <script src="{{ asset('assets/js/todolist.js')}}"></script>
     <!-- End custom js for this page -->
+
+    <script type="text/javascript" src="{{asset('js/plugins/jquery.dataTables.min.js')}}"></script>
+    <script type="text/javascript" src="{{asset('js/plugins/dataTables.bootstrap.min.js')}}"></script>
+    <script type="text/javascript">$('.datatable').DataTable();</script>
+   {{--  <script type="text/javascript">$('#waytable').DataTable();</script>
+    <script type="text/javascript">$('#customertable').DataTable();</script>
+    <script type="text/javascript">$('#sampleTable').DataTable();</script> --}}
+
+   {{--  <script type="text/javascript">$('#sampleTable').DataTable();</script> --}}
+
+
+
   </body>
+
+  <!-- partial:partials/_footer.html -->
+  <footer class="footer">
+    <div class="container-fluid clearfix">
+      <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © bootstrapdash.com 2020</span>
+      <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center"> Free <a href="https://www.bootstrapdash.com/bootstrap-admin-template/" target="_blank">Bootstrap admin templates </a> from Bootstrapdash.com</span>
+    </div>
+  </footer>
+  <!-- partial -->
 </html> 
 
+@yield('script')

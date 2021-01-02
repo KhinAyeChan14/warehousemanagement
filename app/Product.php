@@ -10,4 +10,9 @@ class Product extends Model
     	'code_no','name','photo','description','subcategory_id','brand_id',
     ];
 
+    public function price_stock()
+    {
+        return $this->hasOne(Price_stock::class);
+    }
+
 }

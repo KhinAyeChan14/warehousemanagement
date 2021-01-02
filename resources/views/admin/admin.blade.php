@@ -1,4 +1,4 @@
-@extends('master')
+@extends('admin.master')
 
 @section('sidebarmenu')
 
@@ -23,31 +23,56 @@
 			<i class="mdi mdi-home menu-icon"></i>
 		</a>
 	</li>
-	{{-- <li class="nav-item">
-		<a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
-			<span class="menu-title">Basic UI Elements</span>
-			<i class="menu-arrow"></i>
-			<i class="mdi mdi-crosshairs-gps menu-icon"></i>
-		</a>
-		<div class="collapse" id="ui-basic">
-			<ul class="nav flex-column sub-menu">
-				<li class="nav-item"> <a class="nav-link" href="pages/ui-features/buttons.html">Buttons</a></li>
-				<li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">Typography</a></li>
-			</ul>
-		</div>
-	</li> --}}
-	<li class="nav-item">
-		<a class="nav-link" href="pages/icons/mdi.html">
-			<span class="menu-title">Users</span>
-			<i class="mdi mdi-contacts menu-icon"></i>
-		</a>
-	</li>
-	<li class="nav-item">
-		<a class="nav-link" href="pages/forms/basic_elements.html">
-			<span class="menu-title">Products</span>
-			<i class="mdi mdi-format-list-bulleted menu-icon"></i>
-		</a>
-	</li>
+
+  <li class="nav-item">
+    <a class="nav-link" data-toggle="collapse" href="#general-pages" aria-expanded="false" aria-controls="general-pages">
+      <span class="menu-title">Products Details</span>
+      <i class="menu-arrow"></i>
+      <i class="mdi mdi-medical-bag menu-icon"></i>
+    </a>
+    <div class="collapse" id="general-pages">
+      <ul class="nav flex-column sub-menu">
+        <li class="nav-item">
+          <a class="nav-link" href="{{ route('price_stocks.index') }}">
+            <span class="menu-title">Products</span>
+            <i class="mdi mdi-format-list-bulleted menu-icon"></i>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{ route('price_stocks.index') }}">
+            <span class="menu-title">Categories</span>
+            <i class="mdi mdi-format-list-bulleted menu-icon"></i>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{ route('price_stocks.index') }}">
+            <span class="menu-title">Subcategories</span>
+            <i class="mdi mdi-format-list-bulleted menu-icon"></i>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{ route('price_stocks.index') }}">
+            <span class="menu-title">Brands</span>
+            <i class="mdi mdi-format-list-bulleted menu-icon"></i>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{ route('price_stocks.index') }}">
+            <span class="menu-title">Price</span>
+            <i class="mdi mdi-format-list-bulleted menu-icon"></i>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{ route('price_stocks.index') }}">
+            <span class="menu-title">Stock</span>
+            <i class="mdi mdi-format-list-bulleted menu-icon"></i>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </li>
+    
+
 	<li class="nav-item">
 		<a class="nav-link" href="pages/charts/chartjs.html">
 			<span class="menu-title">Orders</span>
@@ -436,14 +461,7 @@
             </div>
           </div>
           <!-- content-wrapper ends -->
-          <!-- partial:partials/_footer.html -->
-          <footer class="footer">
-            <div class="container-fluid clearfix">
-              <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © bootstrapdash.com 2020</span>
-              <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center"> Free <a href="https://www.bootstrapdash.com/bootstrap-admin-template/" target="_blank">Bootstrap admin templates </a> from Bootstrapdash.com</span>
-            </div>
-          </footer>
-          <!-- partial -->
+          
 </div>
 
 
