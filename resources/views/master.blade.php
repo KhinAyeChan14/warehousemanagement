@@ -253,6 +253,7 @@
     <script src="{{ asset('assets/js/dashboard.js')}}"></script>
     <script src="{{ asset('assets/js/todolist.js')}}"></script>
     <!-- End custom js for this page -->
+    @yield('script')
   </body>
 </html> 
 

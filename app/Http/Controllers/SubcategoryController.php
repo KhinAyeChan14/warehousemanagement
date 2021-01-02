@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Subcategory;
 use Illuminate\Http\Request;
+use App\Category;
 
 class SubcategoryController extends Controller
 {
@@ -14,7 +15,7 @@ class SubcategoryController extends Controller
      */
     public function index()
     {
-         $subcategories= Subcategory::orderBy('id','desc')->get();
+        $subcategories= Subcategory::orderBy('id','desc')->get();
         return view('admin.subcategories.index',compact('subcategories'));
     }
 
@@ -26,7 +27,7 @@ class SubcategoryController extends Controller
     public function create()
     {
         $categories=Category::all();
-        return view('backend.subcategories.create',compact('categories'));
+        return view('admin.subcategories.create',compact('categories'));
     }
 
     /**
