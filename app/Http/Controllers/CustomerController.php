@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Customer;
+use App\Way;
 use Illuminate\Http\Request;
 
 class CustomerController extends Controller
@@ -14,7 +15,8 @@ class CustomerController extends Controller
      */
     public function index()
     {
-        //
+        $customers=Customer::orderBy('id','desc')->get();
+        return view('sales.customer.index',compact('customers'));
     }
 
     /**
@@ -23,8 +25,9 @@ class CustomerController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
-        //
+    {   
+        $ways=Way::all();
+        return view('sales.customer.create',compact('ways'));
     }
 
     /**
@@ -35,7 +38,21 @@ class CustomerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+       // $request->validate([
+       //      'shop_name' => 'required|min:5',
+    
+       //  ]);
+
+        // store data
+        $customer = new Customer;
+        $customer->shop_name = $request->shopname;
+        $customer->phone = $request->phone;
+        $customer->address = $request->address;
+        $customer->way_id = $request->way;
+        $customer->save();
+
+        // redirect
+        return redirect()->route('customer.index');
     }
 
     /**
@@ -57,7 +74,8 @@ class CustomerController extends Controller
      */
     public function edit(Customer $customer)
     {
-        //
+         $ways=Way::all();
+         return view('sales.customer.edit',compact('customer'),compact('ways'));
     }
 
     /**
@@ -69,7 +87,20 @@ class CustomerController extends Controller
      */
     public function update(Request $request, Customer $customer)
     {
-        //
+        //  $request->validate([
+        //     'name' => 'required|min:3',
+        // ]);
+
+        // upload
+        
+
+        $customer->shop_name = $request->shopname;
+        $customer->phone = $request->phone;
+        $customer->address = $request->address;
+        $customer->save();
+
+        // redirect
+        return redirect()->route('customers.index');
     }
 
     /**
@@ -80,6 +111,25 @@ class CustomerController extends Controller
      */
     public function destroy(Customer $customer)
     {
-        //
+       $customer->delete();
+        // redirect
+        return redirect()->route('customers.index');
+    }
+
+
+     /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Customer  $customer
+     * @return \Illuminate\Http\Response
+     */
+    public function getCustomer(Request $request, Customer $customer)
+    {
+        // dd($request->id);
+        // $customers=Customer::where('way_id','=',$request->id)->get();
+        $customers=Customer::where('way_id','=', $request->id)->get();
+        echo json_encode($customers);
+
     }
 }

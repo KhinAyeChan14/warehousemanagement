@@ -70,7 +70,8 @@ class SubcategoryController extends Controller
      */
     public function edit(Subcategory $subcategory)
     {
-        return view('admin.categories.edit',compact('subcategory'));
+        $category = Category::all();
+        return view('admin.subcategories.edit',compact('subcategory','category'));
     }
 
     /**

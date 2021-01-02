@@ -82,4 +82,26 @@ class WayController extends Controller
     {
         //
     }
+
+
+     /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Way  $way
+     * @return \Illuminate\Http\Response
+     */
+    public function session(Request $request, Way $way)
+    {
+
+        session_start();
+        $key = $request->key;
+        $value = $request->value;
+
+        $_SESSION[$key]=$value;
+        echo 'done';
+
+    }
+
+    
 }

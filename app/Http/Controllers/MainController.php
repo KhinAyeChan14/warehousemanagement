@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Product;
+use App\Way;
+use App\Customer;
+
 
 class MainController extends Controller
 {
@@ -11,14 +15,22 @@ class MainController extends Controller
     	return view('admin.admin');
     }
 
-     public function order($value='')
+     public function sales($value='')     
     {
-    	return view('order.order');
+        $ways = Way::orderBy('id','desc')->get();
+        return view('sales.order',compact('ways'));
+
     }
 
 
      public function delivery($value='')
     {
     	return view('delivery.delivery');
+    }
+
+    public function product($value='')
+    {   
+        $products = Product::orderBy('id','desc')->get();
+        return view('sales.order.product',compact('products'));
     }
 }
