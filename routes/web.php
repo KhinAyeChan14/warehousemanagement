@@ -27,6 +27,7 @@ Route::get('sales','MainController@sales')->name('salespage');
 
 Route::get('delivery','MainController@delivery')->name('deliverypage');
 
+<<<<<<< HEAD
 Route::get('product','MainController@product')->name('productpage');
 
 Route::resource('customers','CustomerController');
@@ -39,3 +40,10 @@ Route::get('way','WayController@session')->name('session');
 
 Route::resource('price_stocks','PriceStockController');
 
+=======
+//backend
+
+Route::resource('categories','CategoryController');
+Route::resource('brands','BrandController');
+Route::resource('subcategories','SubcategoryController');
+>>>>>>> e75ea62afb354a30d3160557f70b7655c039a4ab
