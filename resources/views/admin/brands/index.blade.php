@@ -5,7 +5,7 @@
 <main class="app-content">
       <div class="app-title">
         <div>
-          <h1><i class="fa fa-dashboard"></i> Brands</h1>
+          <h1><i class="fa fa-dashboard"></i> Brands List</h1>
           
         </div>
         
@@ -15,7 +15,7 @@
         <div class="col-md-12">
           <div class="tile">
             <div class="tile-body">
-            	<h4>Brands List</h4>
+            	
             	<a href="{{route('brands.create')}}" class="btn btn-success float-right mb-3">Add New</a>
               <div class="table-responsive">
 

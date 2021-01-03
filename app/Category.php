@@ -10,4 +10,8 @@ class Category extends Model
     	'name','logo',
     ];
 
+     public function subcategories()
+    {
+        return $this->hasMany('App\Subcategory');
+    }
 }

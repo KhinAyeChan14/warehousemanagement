@@ -118,6 +118,16 @@
     @yield('content')
 
 
+    @yield('script')
+
+
+    <script type="text/javascript" src="{{asset('js/plugins/jquery.dataTables.min.js')}}"></script>
+    <script type="text/javascript" src="{{asset('js/plugins/dataTables.bootstrap.min.js')}}"></script>
+    <script type="text/javascript">$('#table').DataTable();</script>
+    <script type="text/javascript">$('#waytable').DataTable();</script>
+    <script type="text/javascript">$('#table').DataTable();</script>
+
+
     <!-- Essential javascripts for application to work-->
     <script src="{{ asset('assets/js/jquery-3.3.1.min.js')}}"></script>
     <script src="{{ asset('assets/js/popper.min.js')}}"></script>
@@ -127,6 +137,8 @@
     <script src="{{ asset('assets/js/plugins/pace.min.js')}}"></script>
     <!-- Page specific javascripts-->
     <script type="text/javascript" src="{{ asset('assets/js/plugins/chart.js')}}"></script>
+
+  {{-- </body> --}}
 
 
     <script type="text/javascript">

@@ -5,7 +5,7 @@
 <main class="app-content">
       <div class="app-title">
         <div>
-          <h1><i class="fa fa-dashboard"></i> </h1>
+          <h1><i class="fa fa-dashboard"></i>Subcategories List </h1>
           <p></p>
         </div>
         
@@ -15,7 +15,7 @@
         <div class="col-md-12">
           <div class="tile">
             <div class="tile-body">
-            	<h4>Subcategories List</h4>
+            	
             	<a href="{{route('subcategories.create')}}" class="btn btn-success float-right mb-3">Add New</a>
               <div class="table-responsive">
 

@@ -27,7 +27,11 @@ Route::get('sales','MainController@sales')->name('salespage');
 
 Route::get('delivery','MainController@delivery')->name('deliverypage');
 
+<<<<<<< HEAD
 // Sales Page
+=======
+
+>>>>>>> 26d7539ecba8e52936647e15c596263a4dca04ce
 Route::get('product','MainController@product')->name('productpage');
 Route::get('orderdetails','MainController@orderdetails')->name('orderdetailspage');
 
@@ -39,13 +43,21 @@ Route::get('way','WayController@session')->name('session');
 
 Route::resource('price_stocks','PriceStockController');
 
+<<<<<<< HEAD
+=======
+
+//backend
+>>>>>>> 26d7539ecba8e52936647e15c596263a4dca04ce
 
 // Admin Page
 Route::resource('categories','CategoryController');
 Route::resource('brands','BrandController');
 Route::resource('subcategories','SubcategoryController');
 
+<<<<<<< HEAD
 Route::resource('ways','WayController');
 Route::resource('products','ProductController');
 
 
+=======
+>>>>>>> 26d7539ecba8e52936647e15c596263a4dca04ce

@@ -5,19 +5,16 @@
 <main class="app-content">
       <div class="app-title">
         <div>
-          <h1><i class="fa fa-dashboard"></i> Catgories</h1>  
+          <h1><i class="fa fa-dashboard"></i> Catgories List</h1>  
         </div>
-        <ul class="app-breadcrumb breadcrumb">
-          <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
-         
-        </ul>
+        
       </div>
 
       <div class="row">
         <div class="col-md-12">
           <div class="tile">
             <div class="tile-body">
-            	<h4>Categories List</h4>
+            	
             	<a href="{{route('categories.create')}}" class="btn btn-success float-right mb-3">Add New</a>
               <div class="table-responsive">
 
@@ -59,4 +56,10 @@
      	
 </main>
 
+@endsection
+
+@section('script')
+	<script type="text/javascript" src="{{ asset('assets/js/plugins/jquery.dataTables.min.js')}}"></script>
+    <script type="text/javascript" src="{{ asset('assets/js/plugins/dataTables.bootstrap.min.js') }}"></script>
+    <script type="text/javascript">$('#sampleTable').DataTable();</script>
 @endsection

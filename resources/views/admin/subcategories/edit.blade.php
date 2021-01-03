@@ -30,7 +30,14 @@
                 </div>
                  <div class="form-group">
                     <label for="fileInput">Category Name:</label>
-                    <input type="text" name="name" class="form-control" id="nameInput" value="{{ ($category->name) }}">
+                    <select name="category" class="form-control">
+                      <optgroup label="choose category">
+                        @foreach($category as $row)
+                          <option value="{{ $row->id }}" @if($row->id == $subcategory->category_id) {{ 'selected' }}
+                            @endif>{{ $row->name }}</option>
+                        @endforeach
+                      </optgroup>
+                    </select>
                 </div>
                 <div class="form-group">
                   <input type="submit" name="btn btn-submit" class="btn btn-info" value="Update">
