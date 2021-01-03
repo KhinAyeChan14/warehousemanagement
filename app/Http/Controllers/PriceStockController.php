@@ -13,8 +13,9 @@ class PriceStockController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        return view('admin.price_stocks.index');
+    {   
+        $price_stocks=Price_stock::orderBy('id','desc')->get();
+        return view('admin.price_stocks.index',compact('price_stocks'));
     }
 
     /**
@@ -24,7 +25,8 @@ class PriceStockController extends Controller
      */
     public function create()
     {
-        //
+       $price_stocks=Price_stock::all();
+        return view('admin.price_stocks.create');
     }
 
     /**
@@ -35,7 +37,23 @@ class PriceStockController extends Controller
      */
     public function store(Request $request)
     {
-        //
+         // $request->validate([
+       //      'shop_name' => 'required|min:5',
+    
+       //  ]);
+
+        // store data
+        $price_stock = new Price_stock;
+        $price_stock->pc_price = $request->pcprice;
+        $price_stock->dozen_price = $request->dozenprice;
+        $price_stock->set_price = $request->setprice;
+        $price_stock->pcs_count = $request->pccount;
+        $price_stock->sets_count = $request->setcount;
+        $price_stock->dozens_count = $request->dozencount;
+        $price_stock->save();
+
+        // redirect
+        return redirect()->route('price_stocks.index');
     }
 
     /**
@@ -57,7 +75,7 @@ class PriceStockController extends Controller
      */
     public function edit(Price_stock $price_stock)
     {
-        //
+         return view('admin.price_stocks.edit',compact('price_stock'));
     }
 
     /**
@@ -69,7 +87,23 @@ class PriceStockController extends Controller
      */
     public function update(Request $request, Price_stock $price_stock)
     {
-        //
+        //  $request->validate([
+        //     'name' => 'required|min:3',
+        // ]);
+
+        // upload
+        
+
+       $price_stock->pc_price = $request->pcprice;
+        $price_stock->dozen_price = $request->dozenprice;
+        $price_stock->set_price = $request->setprice;
+        $price_stock->pcs_count = $request->pccount;
+        $price_stock->sets_count = $request->setcount;
+        $price_stock->dozens_count = $request->dozencount;
+        $price_stock->save();
+
+        // redirect
+        return redirect()->route('price_stocks.index');
     }
 
     /**
@@ -80,6 +114,8 @@ class PriceStockController extends Controller
      */
     public function destroy(Price_stock $price_stock)
     {
-        //
+       $price_stock->delete();
+        // redirect
+        return redirect()->route('price_stocks.index');
     }
 }

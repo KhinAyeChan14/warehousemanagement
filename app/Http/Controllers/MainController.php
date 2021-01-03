@@ -22,7 +22,6 @@ class MainController extends Controller
 
     }
 
-
      public function delivery($value='')
     {
     	return view('delivery.delivery');
@@ -32,5 +31,10 @@ class MainController extends Controller
     {   
         $products = Product::orderBy('id','desc')->get();
         return view('sales.order.product',compact('products'));
+    }
+
+    public function orderdetails($value='')
+    {   
+        return view('sales.order.details');
     }
 }

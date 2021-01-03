@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Product;
+use App\Price_stock;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -14,7 +15,8 @@ class ProductController extends Controller
      */
     public function index()
     {
-        //
+        $products=Product::orderBy('id','desc')->get();
+        return view('admin.products.index',compact('products'));
     }
 
     /**
@@ -24,7 +26,8 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        $products=Product::all();
+        return view('admin.products.create');
     }
 
     /**
@@ -35,7 +38,34 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // $request->validate([
+       //      'shop_name' => 'required|min:5',
+    
+       //  ]);
+
+        // store data
+        $product = new Product;
+        $product->code_no = $request->codeno;
+        $product->name = $request->name;
+        $product->photo = $request->photo;
+        $product->description = $request->description;
+        $product->subcategory_id = $request->subcategoryid;
+        $product->brand_id = $request->brandid;
+        $product->save();
+
+
+        $price_stock = new Price_stock;
+        $price_stock->pc_price = $request->pcprice;
+        $price_stock->dozen_price = $request->dozenprice;
+        $price_stock->set_price = $request->setprice;
+        $price_stock->pcs_count = $request->pccount;
+        $price_stock->sets_count = $request->setcount;
+        $price_stock->dozens_count = $request->dozencount;
+        $price_stock->save();
+
+
+        // redirect
+        return redirect()->route('products.index');
     }
 
     /**
@@ -57,7 +87,7 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        //
+        return view('admin.products.edit',compact('product'));
     }
 
     /**
@@ -69,7 +99,26 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
-        //
+        
+        $product->code_no = $request->codeno;
+        $product->name = $request->name;
+        $product->photo = $request->photo;
+        $product->description = $request->description;
+        $product->subcategory_id = $request->subcategoryid;
+        $product->brand_id = $request->brandid;
+        $product->save();
+
+
+        
+        $price_stock->pc_price = $request->pcprice;
+        $price_stock->dozen_price = $request->dozenprice;
+        $price_stock->set_price = $request->setprice;
+        $price_stock->pcs_count = $request->pccount;
+        $price_stock->sets_count = $request->setcount;
+        $price_stock->dozens_count = $request->dozencount;
+        $price_stock->save();
+        // redirect
+        return redirect()->route('products.index');
     }
 
     /**

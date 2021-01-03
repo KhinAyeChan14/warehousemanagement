@@ -3,7 +3,7 @@
 @section('content')
   <main class="main-panel">
 
-    {{-- <div class="row">
+    <div class="row">
       <div class="col-md-12">
         <div class="tile">
           <div class="tile-body">
@@ -47,7 +47,7 @@
           </div>
         </div>
       </div>   
-    </div>  --}}   
+    </div>    
   </main>
 @endsection
 

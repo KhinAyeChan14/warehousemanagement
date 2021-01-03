@@ -35,7 +35,20 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $order = new Order;
+        $order->order_date = date('Y-m-d');
+        $order->voucher_no = uniqid();
+        $order->total = $request->total;
+        $order->status = $request->status;
+        $order->user_id = Auth::id();
+        $order->customer_id = $request->customer;
+        $order->save();
+
+        $ls = json_decode($request->item);
+        foreach ($item as $row) {
+            $order->items()->attach($row->id,['quantity'=>$row->quantity]);
+             $order->items()->attach($row->id,['units_of_measure'=>$row->uom]);
+        }
     }
 
     /**

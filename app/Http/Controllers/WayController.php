@@ -14,7 +14,8 @@ class WayController extends Controller
      */
     public function index()
     {
-        //
+        $ways=Way::orderBy('id','desc')->get();
+        return view('admin.ways.index',compact('ways'));
     }
 
     /**
@@ -24,7 +25,8 @@ class WayController extends Controller
      */
     public function create()
     {
-        //
+        $ways=Way::all();
+        return view('admin.ways.create');
     }
 
     /**
@@ -35,7 +37,19 @@ class WayController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // $request->validate([
+       //      'shop_name' => 'required|min:5',
+    
+       //  ]);
+
+        // store data
+        $way = new Way;
+        $way->township = $request->township;
+        $way->road = $request->road;
+        $way->save();
+
+        // redirect
+        return redirect()->route('ways.index');
     }
 
     /**
@@ -57,7 +71,8 @@ class WayController extends Controller
      */
     public function edit(Way $way)
     {
-        //
+        
+         return view('admin.ways.edit',compact('way'));
     }
 
     /**
@@ -69,7 +84,19 @@ class WayController extends Controller
      */
     public function update(Request $request, Way $way)
     {
-        //
+        //  $request->validate([
+        //     'name' => 'required|min:3',
+        // ]);
+
+        // upload
+        
+
+        $way->township = $request->township;
+        $way->road = $request->road;
+        $way->save();
+
+        // redirect
+        return redirect()->route('ways.index');
     }
 
     /**
@@ -80,7 +107,9 @@ class WayController extends Controller
      */
     public function destroy(Way $way)
     {
-        //
+        $way->delete();
+        // redirect
+        return redirect()->route('ways.index');
     }
 
 
