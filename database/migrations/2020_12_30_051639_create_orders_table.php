@@ -18,7 +18,7 @@ class CreateOrdersTable extends Migration
             $table->date('order_date');
             $table->string('voucher_no');
             $table->string('total');
-            $table->smallInteger('status')->default(1);
+            $table->string('status')->default("Order");
             $table->timestamps();
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('customer_id');

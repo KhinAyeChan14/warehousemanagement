@@ -30,14 +30,10 @@ Route::get('sales','MainController@sales')->name('salespage');
 Route::get('product','MainController@product')->name('productpage');
 Route::get('orderdetails','MainController@orderdetails')->name('orderdetailspage');
 Route::get('ordersuccess','MainController@ordersuccess')->name('ordersuccesspage');
-
-
 Route::resource('customers','CustomerController');
 Route::get('/getCustomer','CustomerController@getCustomer')->name('getCustomerpage');
-
 Route::resource('ways','WayController');
 Route::get('way','WayController@session')->name('session');
-
 Route::resource('price_stocks','PriceStockController');
 
 
@@ -46,7 +42,6 @@ Route::resource('categories','CategoryController');
 Route::resource('brands','BrandController');
 Route::resource('subcategories','SubcategoryController');
 Route::resource('products','ProductController');
-Route::resource('orders','OrderController');
 Route::get('orderlist','MainController@orderlist')->name('orderlistpage');
 Route::get('/changestatus','OrderController@changestatus')->name('changestatuspage');
 
@@ -54,6 +49,13 @@ Route::get('/changestatus','OrderController@changestatus')->name('changestatuspa
 // Delivery Page
 Route::get('delivery','MainController@confirmlist')->name('confirmpage');
 
-
-
-
+// Order
+Route::resource('orders','OrderController');
+Route::get('/order/detail','OrderController@info')->name('orderinfo');
+Route::get('/order_list','OrderController@order_list')->name('order_list');
+Route::get('/status','OrderController@status')->name('status');
+Route::get('/nav','OrderController@nav')->name('nav');
+Route::get('/search','OrderController@search')->name('search');
+Route::get('/earning','OrderController@earning')->name('earning');
+Route::resource('orders','OrderController');
+Route::get('/orderdetail','OrderController@detail')->name('orderdetail');

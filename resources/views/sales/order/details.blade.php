@@ -47,7 +47,7 @@
  
   $(document).ready(function(){
 
-
+   
     function showItem(){
       // alert("OK");
       itemList=localStorage.getItem("item");
@@ -83,9 +83,9 @@
         $('tbody').html(html);
         
        } 
-      }
-
-      showItem();
+      
+}
+       showItem();
 
        $.ajaxSetup({
         headers: {
@@ -93,37 +93,38 @@
         }
       });
 
-       $(document).on('click','.confirm',function(){
 
-        alert("Order Confirmed!");
+      $(document).on('click','.confirm',function(){
 
-        // var item=localStorage.getItem('item');   
-        // var itemArray=JSON.parse(item);
+        // alert("Order Confirmed!");
+
+        var item=localStorage.getItem('item');   
+        var itemArray=JSON.parse(item);
         // var customer=${itemArray[0].customer};
-        // var total=itemArray.reduce((acc,row)=>acc+(row.price*row.qty),0);
+        var total=itemArray.reduce((acc,row)=>acc+(row.price*row.qty),0);
         // alert(total);
 
         // var id="check";
-        //   $.post("{{route('orders.store')}}", { 
-        //     item:item,
-        //     total:total
-            // customer:customer
-            // id:id
+          $.post("{{route('orders.store')}}", { 
+            item:item,
+            total:total
              
-        // },function (response) {
-         // if(response=='Order Successful'){
-           // localStorage.clear();
-           // location.href = "{{ route('ordersuccesspage') }}";
+        },function (response) {
+         if(response=='Order Successful'){
+           localStorage.clear();
+           location.href = "{{ route('ordersuccesspage') }}";
            // alert(response);
 
-         // }
+         }
 
 
-        // });
+        });
 
 });
    
+
 });
+
 </script>
 
 @endsection
