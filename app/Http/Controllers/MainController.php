@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Product;
 use App\Way;
 use App\Customer;
-
+use App\Price_stock;
 
 class MainController extends Controller
 {
@@ -22,19 +22,31 @@ class MainController extends Controller
 
     }
 
-     public function delivery($value='')
+     public function confirmlist($value='')
     {
-    	return view('delivery.delivery');
+    	return view('delivery.confirmlist');
     }
 
     public function product($value='')
     {   
         $products = Product::orderBy('id','desc')->get();
         return view('sales.order.product',compact('products'));
+
     }
 
     public function orderdetails($value='')
     {   
         return view('sales.order.details');
     }
+
+    public function ordersuccess($value='')
+    {   
+        return view('sales.order.ordersuccess');
+    }
+
+    public function orderlist($value='')
+    {   
+        return view('admin.orderlist');
+    }
+
 }

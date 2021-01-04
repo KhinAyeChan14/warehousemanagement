@@ -1,7 +1,8 @@
 <?php
 
 namespace App;
-
+use App\Product;
+use App\Price_stock;
 use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
@@ -12,7 +13,7 @@ class Product extends Model
 
     public function price_stock()
     {
-        return $this->hasOne(Price_stock::class);
+        return $this->hasOne('App\Price_stock');
     }
 
     public function subcategory(){

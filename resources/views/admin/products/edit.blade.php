@@ -18,7 +18,7 @@
         <div class="tile">
           <div class="tile-body">
             <h4>Product Edit Form</h4>
-            <form method="post" action="{{route('products.update',$product->id)}}" enctype="multipart/form-data" class="mt-3">
+            <form method="post" action="{{route('products.update',$product->id,$price_stock->id)}}" enctype="multipart/form-data" class="mt-3">
               @csrf
               @method('PUT')
 
@@ -102,7 +102,7 @@
                 @php
                     use App\Price_stock;
                     $pid=$product->id;
-                    $pricestock = Price_stock::where('product_id',1)->first();
+                    $pricestock = Price_stock::where('product_id',$pid)->first();
                 @endphp
 
                  <div class="row">

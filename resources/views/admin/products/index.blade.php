@@ -54,7 +54,7 @@
                     <td>{{$product->name}}</td>
                     @php
                     $pid=$product->id;
-                    $pricestock = Price_stock::where('product_id',1)->first();
+                    $pricestock = Price_stock::where('product_id',$pid)->first();
                     @endphp
 
                     <td>{{$pricestock->pc_price}}</td>

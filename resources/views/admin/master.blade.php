@@ -105,9 +105,9 @@
           </ul>
         </li>
 
-         <li><a class="app-menu__item {{ Request::is('customers*')?'active':'' }}" href="{{ route('customers.index') }}"><i class="app-menu__icon fa fa-file-code-o"></i><span class="app-menu__label">Customers</span></a></li>
+         {{-- <li><a class="app-menu__item" href="{{ route('customers.index') }}"><i class="app-menu__icon fa fa-file-code-o"></i><span class="app-menu__label">Customers</span></a></li> --}}
 
-         <li><a class="app-menu__item {{ Request::is('orders*')?'active':'' }}" href="#"><i class="app-menu__icon fa fa-file-code-o"></i><span class="app-menu__label">Orders</span></a></li>
+         <li><a class="app-menu__item" href="{{ route('orderlistpage') }}"><i class="app-menu__icon fa fa-file-code-o"></i><span class="app-menu__label">Orders</span></a></li>
 
          <li><a class="app-menu__item {{ Request::is('ways*')?'active':'' }}" href="{{ route('ways.index') }}"><i class="app-menu__icon fa fa-file-code-o"></i><span class="app-menu__label">Ways</span></a></li>  
       </ul>

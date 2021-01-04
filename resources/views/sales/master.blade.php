@@ -101,6 +101,8 @@
 
          <li><a class="app-menu__item" href="{{ route('productpage') }}"><i class="app-menu__icon fa fa-file-code-o"></i><span class="app-menu__label">Products</span></a></li>
 
+         <li><a class="app-menu__item" href="{{ route('customers.index') }}"><i class="app-menu__icon fa fa-file-code-o"></i><span class="app-menu__label">Customers</span></a></li>
+
          <li><a class="app-menu__item" {{-- {{ Request::is('orders*')?'active':'' }}" --}} href="#"><i class="app-menu__icon fa fa-file-code-o"></i><span class="app-menu__label">Order History</span></a></li> 
       </ul>
     </aside>
@@ -122,10 +124,11 @@
 
 
     {{-- Datatable --}}
-    <script type="text/javascript" src="{{asset('backend_assets/js/plugins/jquery.dataTables.min.js')}}"></script>
-    <script type="text/javascript" src="{{asset('backend_assets/js/plugins/dataTables.bootstrap.min.js')}}"></script>
-    <script type="text/javascript">$('.sampleTable').DataTable();</script>
+    <script type="text/javascript" src="{{asset('assets/js/plugins/jquery.dataTables.min.js')}}"></script>
+    <script type="text/javascript" src="{{asset('assets/js/plugins/dataTables.bootstrap.min.js')}}"></script>
+  {{--   <script type="text/javascript">$('.sampleTable').DataTable();</script> --}}
     <script type="text/javascript">$('#sampleTable').DataTable();</script>
+
 
 
     <script type="text/javascript">
@@ -189,6 +192,10 @@
 
      <!-- Data table plugin-->
     @yield('script')
-    
-  </body>
+
+    </body>
 </html>
+  
+
+
+

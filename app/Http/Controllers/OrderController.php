@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Order;
 use Illuminate\Http\Request;
+use Auth;
 
 class OrderController extends Controller
 {
@@ -34,21 +35,26 @@ class OrderController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
+    {   
+
+        // echo 'Order Successful';
+        // dd($request->item);
+        $item = json_decode($request->item);
+
         $order = new Order;
         $order->order_date = date('Y-m-d');
         $order->voucher_no = uniqid();
         $order->total = $request->total;
-        $order->status = $request->status;
         $order->user_id = Auth::id();
-        $order->customer_id = $request->customer;
+        $order->customer_id = $item[0]->customer;
         $order->save();
 
-        $ls = json_decode($request->item);
-        foreach ($item as $row) {
-            $order->items()->attach($row->id,['quantity'=>$row->quantity]);
-             $order->items()->attach($row->id,['units_of_measure'=>$row->uom]);
-        }
+        // foreach ($item as $row) {
+        //     $order->items()->attach($row->id,['quantity'=>$row->qty]);
+        //     $order->items()->attach($row->id,['units_of_measure'=>"pc"]);
+        // }
+        // echo 'Order Successful';
+
     }
 
     /**
@@ -82,7 +88,8 @@ class OrderController extends Controller
      */
     public function update(Request $request, Order $order)
     {
-        //
+        
+
     }
 
     /**
@@ -94,5 +101,25 @@ class OrderController extends Controller
     public function destroy(Order $order)
     {
         //
+    }
+
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\Order  $order
+     * @return \Illuminate\Http\Response
+     */
+    public function changestatus(Order $order)
+    {   
+        
+       $id=$order->id;
+       $order= Order::find($id);
+       $order->status = "2";
+       $order->save();
+
+        // $order=Order::where('id', $order->id)->update('status' => '2');
+
+        // $order->save();
     }
 }

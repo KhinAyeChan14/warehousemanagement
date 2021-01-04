@@ -90,12 +90,12 @@
       <div class="app-sidebar__user"><img class="app-sidebar__user-avatar" src="https://s3.amazonaws.com/uifaces/faces/twitter/jsa/48.jpg" alt="User Image">
         <div>
           <p class="app-sidebar__user-name">{{-- Auth::user()->id --}}</p>
-          <p class="app-sidebar__user-designation">Warehouse Manager</p>
+          <p class="app-sidebar__user-designation">Delivery</p>
         </div>
       </div>
 
       <ul class="app-menu">
-        <li><a class="app-menu__item {{ Request::is('admin')?'active':'' }}" href="{{ route('adminpage') }}"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">Dashboard</span></a></li>
+        {{-- <li><a class="app-menu__item {{ Request::is('admin')?'active':'' }}" href="{{ route('adminpage') }}"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">Dashboard</span></a></li>
         <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-laptop"></i><span class="app-menu__label">Products</span><i class="treeview-indicator fa fa-angle-right"></i></a>
           <ul class="treeview-menu">
             <li><a class="treeview-item" href="{{ route('products.index') }}"><i class="icon fa fa-circle-o"></i> Products</a></li>
@@ -103,13 +103,13 @@
             <li><a class="treeview-item" href="#"><i class="icon fa fa-circle-o"></i> Subcategories</a></li>
             <li><a class="treeview-item" href="#"><i class="icon fa fa-circle-o"></i> Brands</a></li>
           </ul>
-        </li>
+        </li> --}}
 
-         <li><a class="app-menu__item {{ Request::is('customers*')?'active':'' }}" href="{{ route('customers.index') }}"><i class="app-menu__icon fa fa-file-code-o"></i><span class="app-menu__label">Customers</span></a></li>
+        {{--  <li><a class="app-menu__item {{ Request::is('customers*')?'active':'' }}" href="{{ route('customers.index') }}"><i class="app-menu__icon fa fa-file-code-o"></i><span class="app-menu__label">Customers</span></a></li> --}}
 
-         <li><a class="app-menu__item {{ Request::is('orders*')?'active':'' }}" href="#"><i class="app-menu__icon fa fa-file-code-o"></i><span class="app-menu__label">Orders</span></a></li>
+         <li><a class="app-menu__item" href="{{ route('confirmpage') }}"><i class="app-menu__icon fa fa-file-code-o"></i><span class="app-menu__label">Orders</span></a></li>
 
-         <li><a class="app-menu__item {{ Request::is('ways*')?'active':'' }}" href="{{ route('ways.index') }}"><i class="app-menu__icon fa fa-file-code-o"></i><span class="app-menu__label">Ways</span></a></li>  
+         {{-- <li><a class="app-menu__item {{ Request::is('ways*')?'active':'' }}" href="{{ route('ways.index') }}"><i class="app-menu__icon fa fa-file-code-o"></i><span class="app-menu__label">Ways</span></a></li>   --}}
       </ul>
     </aside>
     

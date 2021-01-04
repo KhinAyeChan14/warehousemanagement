@@ -6,9 +6,14 @@
       use App\Customer;
       use App\Way;
       session_start();
-      $wayid=$_SESSION['way'];
-      $customers=Customer::where('way_id','=', $wayid)->get();
-      $way=Way::find($wayid);
+      
+      if (isset($_SESSION['way'])) {
+          $wayid=$_SESSION['way'];
+          $customers=Customer::where('way_id','=', $wayid)->get();
+          $way=Way::find($wayid);
+
+      }
+
     @endphp
 
   <main class="app-content">

@@ -61,6 +61,7 @@ class ProductController extends Controller
         $price_stock->pcs_count = $request->pccount;
         $price_stock->sets_count = $request->setcount;
         $price_stock->dozens_count = $request->dozencount;
+        $price_stock->product_id=$product->id;
         $price_stock->save();
 
 
@@ -85,9 +86,9 @@ class ProductController extends Controller
      * @param  \App\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function edit(Product $product)
+    public function edit(Product $product, Price_stock $price_stock)
     {
-        return view('admin.products.edit',compact('product'));
+        return view('admin.products.edit',compact('product'),compact('price_stock'));
     }
 
     /**
@@ -97,7 +98,7 @@ class ProductController extends Controller
      * @param  \App\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Product $product)
+    public function update(Request $request, Product $product, Price_stock $price_stock)
     {
         
         $product->code_no = $request->codeno;
@@ -108,7 +109,6 @@ class ProductController extends Controller
         $product->brand_id = $request->brandid;
         $product->save();
 
-
         
         $price_stock->pc_price = $request->pcprice;
         $price_stock->dozen_price = $request->dozenprice;
@@ -116,6 +116,7 @@ class ProductController extends Controller
         $price_stock->pcs_count = $request->pccount;
         $price_stock->sets_count = $request->setcount;
         $price_stock->dozens_count = $request->dozencount;
+        $price_stock->product_id=$product->id;
         $price_stock->save();
         // redirect
         return redirect()->route('products.index');

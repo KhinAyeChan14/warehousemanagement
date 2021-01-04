@@ -1,7 +1,7 @@
 @extends('sales.master')
 
 @section('content')
-  {{-- <main class="app-content"> --}}
+  <main class="app-content">
 
     <div class="row">
       <div class="col-md-12">
@@ -46,9 +46,5 @@
         </div>
       </div>   
     </div>    
-  {{-- </main> --}}
-@endsection
-
-@section('script')
-  
+  </main>
 @endsection

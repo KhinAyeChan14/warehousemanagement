@@ -4,6 +4,7 @@
 @php
   use App\Way;
   use App\Customer;
+  use App\Price_stock;
   // use Auth;
   session_start();
   $wayid=$_SESSION['way'];
@@ -123,6 +124,7 @@
                       data-user='{{Auth::user()->id}}'
                       @endguest
                       data-id='{{ $product->id }}'
+                      data-name='{{ $product->name }}'
                       data-price='#price{{ $product->id }}'
                       data-qty='#qty{{ $product->id }}'
                     >Order</button>
@@ -171,14 +173,17 @@ $(document).ready(function(){
     }
 
   });
+
   $(document).on('click','.order',function(){
     var customer=$(this).data('customer');
     var user=$(this).data('user');
     var id=$(this).data('id');
+    var name=$(this).data('name');
     var price_id=$(this).data('price');
     var price=$(price_id).val();
     var qty_id=$(this).data('qty');
     var qty=$(qty_id).val();
+    // var unit=$(this).data('unit');
     // console.log('id is '+id);
     // console.log('price is '+price);
     // console.log('qty is '+qty);
@@ -187,10 +192,12 @@ $(document).ready(function(){
 
     var item={
         id:id,
+        name:name,
         price:price,
         qty:qty,
         user:user,
         customer:customer,
+        // unit:unit,
       }
 
       var itemList=localStorage.getItem("item");

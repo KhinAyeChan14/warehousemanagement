@@ -1,7 +1,8 @@
 @extends('sales.master')
 
 @section('content')
-  <main class="main-panel">
+  <main class="app-content">
+
 
     <div class="row">
       <div class="col-md-12">
@@ -12,7 +13,7 @@
             
 
             <div class="table-responsive mt-3">
-              <table class="table table-bordered datatable">
+              <table class="table table-bordered" id="sampleTable">
                 <thead class="thead-dark">
                   <tr>
                     <th>#</th>
