@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Product;
 use App\Price_stock;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\DB;
 class ProductController extends Controller
 {
     /**
@@ -132,4 +132,41 @@ class ProductController extends Controller
     {
         //
     }
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Product  $product
+     * @return \Illuminate\Http\Response
+     */
+    public function qty_reactive(Request $request){
+    DB::transaction(function() use ($request){
+        $id=$request->id;
+        $newQty=$request->qty;
+        $oldQty=$request->oqty;
+        $unit=$request->unit;
+        if ($unit=='pc') {
+            $count='pcs_count';
+        }elseif ($unit=='dozen') {
+            $count='dozens_count';
+        }else{
+            $count='sets_count';
+        }
+
+        $product=Price_stock::where('product_id','=', $id)->get();
+        //     ->sharedLock()
+        //     ->lockForUpdate()
+        //     ->get();
+
+        // if ($newQty>$oldQty) {
+        if ($product[0]->$count<($newQty-$oldQty)) {
+            echo "error";
+        }else{
+            $product[0]->$count=$product[0]->$count-($newQty-$oldQty);
+            $product[0]->save();
+            echo ($product[0]->$count);
+        }        
+    });
+    }
+
 }

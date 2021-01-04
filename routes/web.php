@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
 
 Auth::routes();
@@ -35,6 +35,7 @@ Route::get('/getCustomer','CustomerController@getCustomer')->name('getCustomerpa
 Route::resource('ways','WayController');
 Route::get('way','WayController@session')->name('session');
 Route::resource('price_stocks','PriceStockController');
+Route::get('quantity/reative','ProductController@qty_reactive')->name('qty_reactive');
 
 
 // Admin Page

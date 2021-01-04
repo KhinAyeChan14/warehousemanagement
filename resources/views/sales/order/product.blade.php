@@ -107,12 +107,17 @@
                      {{ $product->price_stock->set_price }} 
                     </span>
                    </td>
-                    <td class="align-middle text-right"> {{ $product->price_stock->pcs_count }} </td>
-                    <td class="align-middle text-right"> {{ $product->price_stock->dozens_count }} </td>
-                    <td class="align-middle text-right">  {{ $product->price_stock->sets_count }}</td>
+                    <td  class="align-middle text-right">
+                    <span id="pc{{ $product->id }}" >{{ $product->price_stock->pcs_count }}</span>  </td>
+                    <td  class="align-middle text-right">
+                    <span id="dc{{ $product->id }}"> {{ $product->price_stock->dozens_count }}</span> </td>
+                    <td  class="align-middle text-right"> 
+                     <span id="sc{{ $product->id }}"> {{ $product->price_stock->sets_count }}</span></td>
                     <td class="align-middle text-center">  
-                      <input id="qty{{ $product->id }}" class="w-50" type="number" name="qty" min="0" >
+                      <input id="qty{{ $product->id }}" class="w-50 text-right" type="number" name="qty" value="0" min="0"                      
+                       >
                       <input id="price{{ $product->id }}" class="w-50" type="hidden">
+                      <input id="unit{{ $product->id }}" class="w-50" type="hidden">
                     </td>
                     <td class="align-middle text-center">    
                     {{-- <a href="#" class="btn btn-warning btn-sm">Details</a> --}}
@@ -126,6 +131,7 @@
                       data-id='{{ $product->id }}'
                       data-name='{{ $product->name }}'
                       data-price='#price{{ $product->id }}'
+                      data-unit='#unit{{ $product->id }}'
                       data-qty='#qty{{ $product->id }}'
                     >Order</button>
                     </td>
@@ -149,6 +155,44 @@
   
 $(document).ready(function(){
 
+if (localStorage.getItem("item")) {
+  var string=localStorage.getItem("item");
+  var myArray=JSON.parse(string);
+  myArray.forEach(function(v,i){
+    $('#qty'+v.id).val(v.qty);
+      if (v.unit=='pc') {
+      $('#sp1'+v.id).attr('style','text-shadow: 1px 1px red'); 
+      $('#sp2'+v.id).attr('style',''); 
+      $('#sp3'+v.id).attr('style','');
+      $('#price'+v.id).val(v.price);
+      $('#unit'+v.id).val('pc');
+
+      $('#pc'+v.id).attr('style','text-shadow: 1px 1px red'); 
+      $('#dc'+v.id).attr('style',''); 
+      $('#sc'+v.id).attr('style',''); 
+    }else if (v.unit=='dozen') {
+      $('#sp2'+v.id).attr('style','text-shadow: 1px 1px red'); 
+      $('#sp1'+v.id).attr('style',''); 
+      $('#sp3'+v.id).attr('style','');
+      $('#price'+v.id).val(v.price);
+      $('#unit'+v.id).val('dozen');
+      
+      $('#pc'+v.id).attr('style',''); 
+      $('#dc'+v.id).attr('style','text-shadow: 1px 1px red');
+      $('#sc'+v.id).attr('style','');
+    }else{
+      $('#sp3'+v.id).attr('style','text-shadow: 1px 1px red');
+      $('#sp2'+v.id).attr('style',''); 
+      $('#sp1'+v.id).attr('style','');
+      $('#price'+v.id).val(v.price);
+      $('#unit'+v.id).val('set');
+
+      $('#pc'+v.id).attr('style',''); 
+      $('#dc'+v.id).attr('style',''); 
+      $('#sc'+v.id).attr('style','text-shadow: 1px 1px red');
+    }
+  })
+}
   $(document).on('click','.unit',function(){
     var id=$(this).data('id');
     var unit=$(this).data('unit');
@@ -160,18 +204,22 @@ $(document).ready(function(){
       $('#sp2'+id).attr('style',''); 
       $('#sp3'+id).attr('style','');
       $('#price'+id).val(price);
+      $('#unit'+id).val('pc');
+
     }else if (unit=='dozen_price') {
       $('#sp2'+id).attr('style','text-shadow: 1px 1px red'); 
       $('#sp1'+id).attr('style',''); 
       $('#sp3'+id).attr('style','');
       $('#price'+id).val(price);
+      $('#unit'+id).val('dozen');
     }else{
       $('#sp3'+id).attr('style','text-shadow: 1px 1px red'); 
       $('#sp2'+id).attr('style',''); 
       $('#sp1'+id).attr('style','');
       $('#price'+id).val(price);
-    }
+      $('#unit'+id).val('set');
 
+    }
   });
 
   $(document).on('click','.order',function(){
@@ -181,41 +229,81 @@ $(document).ready(function(){
     var name=$(this).data('name');
     var price_id=$(this).data('price');
     var price=$(price_id).val();
+    var unit_id=$(this).data('unit');
+    var unit=$(unit_id).val();
     var qty_id=$(this).data('qty');
     var qty=$(qty_id).val();
-    // var unit=$(this).data('unit');
-    // console.log('id is '+id);
-    // console.log('price is '+price);
-    // console.log('qty is '+qty);
-    // console.log('user is '+user);
-    // console.log('customer is '+customer);
-
+    if (unit) {
     var item={
         id:id,
         name:name,
         price:price,
         qty:qty,
+        unit:unit,
         user:user,
         customer:customer,
         // unit:unit,
       }
-
       var itemList=localStorage.getItem("item");
       var itemArray;
+      var hit=false;
+      var old_qty=0;
+      if (itemList) {
+        itemArray=JSON.parse(itemList);   
+        itemArray.forEach(function(v,i){
+          if (v.id==id) {
+            old_qty=v.qty;
+            v.qty=qty;
+            hit=true;
+            // console.log('hit')
+          }
+        })
+        if (hit) {
 
-      if(itemList==null){
+        }else{
+        itemArray.push(item);
+        }
+      }else{
         itemArray=[]
-      }
-      else{
-        itemArray=JSON.parse(itemList);
-
+        itemArray.push(item);
       }
 
-      itemArray.push(item);
-      stringItem=JSON.stringify(itemArray);
-      localStorage.setItem("item",stringItem);
+      // stringItem=JSON.stringify(itemArray);
+      // localStorage.setItem("item",stringItem);
 
-
+      $.ajax({
+        url:'{{ route('qty_reactive') }}',
+        method:'GET',
+        data:{id:id,qty:qty,oqty:old_qty,unit:unit},
+        success:function(ans){
+          if (ans!='error') {
+            if (unit=='pc') {
+              $('#pc'+id).text(ans);
+              $('#pc'+id).attr('style','text-shadow: 1px 1px red'); 
+              $('#dc'+id).attr('style',''); 
+              $('#sc'+id).attr('style',''); 
+            }else if(unit=='dozen'){
+              $('#dc'+id).text(ans);
+              $('#pc'+id).attr('style',''); 
+              $('#dc'+id).attr('style','text-shadow: 1px 1px red'); 
+              $('#sc'+id).attr('style',''); 
+            }else{
+              $('#sc'+id).text(ans);
+              $('#pc'+id).attr('style',''); 
+              $('#dc'+id).attr('style',''); 
+              $('#sc'+id).attr('style','text-shadow: 1px 1px red'); 
+            }
+              stringItem=JSON.stringify(itemArray);
+              localStorage.setItem("item",stringItem);
+          }else{
+            alert('Balance Not Enough');
+            $(qty_id).val(old_qty);
+          }
+        }
+      })
+      }else{
+        alert('You Must Be Choose Price!');
+      }
 
 
   });
