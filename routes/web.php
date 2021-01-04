@@ -21,9 +21,9 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('admin','MainController@admin')->name('adminpage');
+Route::get('/admin','MainController@admin')->name('adminpage');
 
-Route::get('sales','MainController@sales')->name('salespage');
+Route::get('/sales','MainController@sales')->name('salespage');
 
 // Sales Page
 
@@ -47,15 +47,16 @@ Route::get('/changestatus','OrderController@changestatus')->name('changestatuspa
 
 
 // Delivery Page
-Route::get('delivery','MainController@confirmlist')->name('confirmpage');
+Route::get('/delivery','MainController@confirmlist')->name('confirmpage');
 
 // Order
 Route::resource('orders','OrderController');
 Route::get('/order/detail','OrderController@info')->name('orderinfo');
-Route::get('/order_list','OrderController@order_list')->name('order_list');
 Route::get('/status','OrderController@status')->name('status');
+Route::get('/delistatus','OrderController@delistatus')->name('delistatus');
 Route::get('/nav','OrderController@nav')->name('nav');
 Route::get('/search','OrderController@search')->name('search');
-Route::get('/earning','OrderController@earning')->name('earning');
 Route::resource('orders','OrderController');
+
+Route::get('/earning','OrderController@earning')->name('earning');
 Route::get('/orderdetail','OrderController@detail')->name('orderdetail');

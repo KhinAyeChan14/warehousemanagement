@@ -258,6 +258,7 @@ if (isset($_SESSION['nav'])) {
                                                         @csrf
                                                         @method('GET')
                                                         <input type="text" name="id" value="{{$data->id}}">
+                                                        <input type="text" name="cid" value="{{$customer->id}}">
                                                       </form>
                                                     <button class="btn btn-outline-info" onclick="document.getElementById('info{{$data->id}}').submit();">
                                                         <i class="fas fa-info"></i>
@@ -494,6 +495,9 @@ $(document).ready(function(){
     $("#nav-delivery-tab").click(function(){
         setSession('nav','delivery','{{route('nav')}}');
     })
+     $("#nav-purchase-tab").click(function(){
+        setSession('nav','purchase','{{route('nav')}}');
+    })
     $("#nav-cancel-tab").click(function(){
         setSession('nav','cancel','{{route('nav')}}');
     })
@@ -534,11 +538,11 @@ $(document).ready(function(){
             success:function(data){
                 if (data){
                     if (data=='today') {
-                        location.href= '{{route('order_list')}}';
+                        location.href= '{{route('orderlistpage')}}';
                     }else if (data=='all') {
-                        location.href= '{{route('order_list')}}';
+                        location.href= '{{route('orderlistpage')}}';
                     }else{
-                        location.href= '{{route('order_list')}}';
+                        location.href= '{{route('orderlistpage')}}';
                     }
                 }
             }

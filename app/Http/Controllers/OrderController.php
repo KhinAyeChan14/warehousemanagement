@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Order;
+use App\Customer;
 use Illuminate\Http\Request;
 use Auth;
 use Illuminate\Support\Facades\DB;
@@ -105,10 +106,10 @@ class OrderController extends Controller
         //
     }
    
-}
+// }
 
 
-// //backend order panel
+// backend order panel
 //     /**
 //      * Display a listing of the resource.
 //      *
@@ -119,82 +120,105 @@ class OrderController extends Controller
 //         // dd(Auth::user()->id);
 //         return view('backend.order.order');
 //     }
-//     /**
-//      * Update the specified resource in storage.
-//      *
-//      * @param  \Illuminate\Http\Request  $request
-//      * @param  \App\Order  $order
-//      * @return \Illuminate\Http\Response
-//      */
-//     public function info(Request $request, Order $order)
-//     {
-//         //
-//         $order=Order::find($request->id);
-//         $user=User::find($order->user_id);
-//         return view('backend.order.order_detail',compact('order','user'));
-//     }
-//     /**
-//      * Update the specified resource in storage.
-//      *
-//      * @param  \Illuminate\Http\Request  $request
-//      * @param  \App\Order  $order
-//      * @return \Illuminate\Http\Response
-//      */
-//     public function status(Request $request, Order $order)
-//     {
-//         //
-//         // dd($request->status);
-//         $order=Order::find($request->id);
-//         $order->status=$request->status;
-//         $order->save();
-//         return redirect()->route('order_list');
-//     }
-//     /**
-//      * Update the specified resource in storage.
-//      *
-//      * @param  \Illuminate\Http\Request  $request
-//      * @param  \App\Order  $order
-//      * @return \Illuminate\Http\Response
-//      */
-//     public function nav(Request $request, Order $order)
-//     {
-//         //
-//         session_start();
-//         $key = $request->key;
-//         $value = $request->value;
 
-//         $_SESSION[$key]=$value;
-//         echo 'done';
-//     }
-//     /**
-//      * Update the specified resource in storage.
-//      *
-//      * @param  \Illuminate\Http\Request  $request
-//      * @param  \App\Order  $order
-//      * @return \Illuminate\Http\Response
-//      */
-//     public function search(Request $request, Order $order)
-//     {
-//         //
-//         session_start();
-//         $start = $request->start;
-//         $end = $request->end;
-//         if ($start==''&&$end=='') {
-//             unset($_SESSION['startDate']);
-//             unset($_SESSION['endDate']);
-//             unset($_SESSION['all']);
-//             echo 'today';
-//         }elseif ($start=='all'&&$end=='all') {
-//             $_SESSION['all']='all';
-//             unset($_SESSION['startDate']);
-//             unset($_SESSION['endDate']);
-//             echo 'all';
-//         }else{
-//             $_SESSION['startDate']=$start;
-//             $_SESSION['endDate']=$end;       
-//             echo 'search';
-//         }
-//     }
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Order  $order
+     * @return \Illuminate\Http\Response
+     */
+    public function info(Request $request, Order $order)
+    {
+        // dd($request->id).die();
+        // dd($request->cid).die();
+        $order=Order::find($request->id);
+        $customer=Customer::find($request->cid);
+        return view('admin.order_detail',compact('order','customer'));
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Order  $order
+     * @return \Illuminate\Http\Response
+     */
+    public function status(Request $request, Order $order)
+    {
+        //
+        // dd($request->status);
+        $order=Order::find($request->id);
+        $order->status=$request->status;
+        $order->save();
+        return redirect()->route('orderlistpage');
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Order  $order
+     * @return \Illuminate\Http\Response
+     */
+    public function delistatus(Request $request, Order $order)
+    {
+        //
+        // dd($request->status);
+        $order=Order::find($request->id);
+        $order->status=$request->status;
+        $order->save();
+        return redirect()->route('confirmpage');
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Order  $order
+     * @return \Illuminate\Http\Response
+     */
+
+    public function nav(Request $request, Order $order)
+    {
+        //
+        session_start();
+        $key = $request->key;
+        $value = $request->value;
+
+        $_SESSION[$key]=$value;
+        echo 'done';
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Order  $order
+     * @return \Illuminate\Http\Response
+     */
+    public function search(Request $request, Order $order)
+    {
+        //
+        session_start();
+        $start = $request->start;
+        $end = $request->end;
+        if ($start==''&&$end=='') {
+            unset($_SESSION['startDate']);
+            unset($_SESSION['endDate']);
+            unset($_SESSION['all']);
+            echo 'today';
+        }elseif ($start=='all'&&$end=='all') {
+            $_SESSION['all']='all';
+            unset($_SESSION['startDate']);
+            unset($_SESSION['endDate']);
+            echo 'all';
+        }else{
+            $_SESSION['startDate']=$start;
+            $_SESSION['endDate']=$end;       
+            echo 'search';
+        }
+    }
 //     /**
 //      * Update the specified resource in storage.
 //      *
@@ -263,4 +287,5 @@ class OrderController extends Controller
 
 //     echo json_encode($total);
 //     }
-// //backend order panel
+// backend order panel
+}

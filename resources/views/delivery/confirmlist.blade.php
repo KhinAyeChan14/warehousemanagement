@@ -1,4 +1,4 @@
-@extends('admin.master')
+@extends('delivery.master')
 @section('content')
 @php
 use App\Order;
@@ -154,6 +154,7 @@ if (isset($_SESSION['nav'])) {
                                             <th class="align-middle text-center">No</th>
                                             <th class="align-middle text-center">Shop Name</th>
                                             <th class="align-middle text-center">Address</th>
+                                            <th class="align-middle text-center">Voucher No</th>
                                             <th class="align-middle text-center">Action</th>
 
                                         </tr>
@@ -172,24 +173,26 @@ if (isset($_SESSION['nav'])) {
                                                 <td class="align-middle text-center">{{$i++}}</td>
                                                 <td class="align-middle text-center">{{$customer->shop_name}}</td>
                                                 <td class="align-middle text-center">{{$customer->address}}</td>
+                                                <td class="align-middle text-center">{{$data->voucher_no}}</td>
+
                                                  
                                                 <td class="align-middle text-center">
-                                                    <form id="info{{$data->id}}" action="{{route('orderinfo')}}" method="POST" class="d-none">
+                                                    {{-- <form id="info{{$data->id}}" action="{{route('orderinfo')}}" method="POST" class="d-none">
                                                         @csrf
                                                         @method('GET')
                                                         <input type="text" name="id" value="{{$data->id}}">
                                                       </form>
                                                     <button class="btn btn-outline-info" onclick="document.getElementById('info{{$data->id}}').submit();">
                                                         <i class="fas fa-info"></i>
-                                                    </button>
+                                                    </button> --}}
 
-                                                    <form id="delivery{{$data->id}}" action="{{route('status')}}" method="POST" class="d-none">
+                                                    <form id="delivery{{$data->id}}" action="{{route('delistatus')}}" method="POST" class="d-none">
                                                         @csrf
                                                         @method('GET')
                                                         <input type="text" name="id" value="{{$data->id}}">
                                                         <input type="text" name="status" value="Delivery">                                                
                                                     </form>
-                                                    <a href="{{route('status')}}" class="btn btn-outline-success" onclick="event.preventDefault();document.getElementById('confirm{{$data->id}}').submit();">
+                                                    <a href="{{route('delistatus')}}" class="btn btn-outline-success" onclick="event.preventDefault();document.getElementById('delivery{{$data->id}}').submit();">
                                                         <i class="fas fa-truck"></i>
                                                     </a>
 
@@ -211,8 +214,8 @@ if (isset($_SESSION['nav'])) {
                                             <th class="align-middle text-center">No</th>
                                             <th class="align-middle text-center">Shop Name</th>
                                             <th class="align-middle text-center">Address</th>
-                                            <th class="align-middle text-center">Action</th>
-
+                                            <th class="align-middle text-center">Voucher No</th>
+                                            {{-- <th class="align-middle text-center">Action</th> --}}
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -229,8 +232,9 @@ if (isset($_SESSION['nav'])) {
                                                 <td class="align-middle text-center">{{$i++}}</td>
                                                 <td class="align-middle text-center">{{$customer->shop_name}}</td>
                                                 <td class="align-middle text-center">{{$customer->address}}</td>
+                                                <td class="align-middle text-center">{{$data->voucher_no}}</td>
                                                  
-                                                <td class="align-middle text-center">
+                                               {{--  <td class="align-middle text-center">
                                                     <form id="info{{$data->id}}" action="{{route('orderinfo')}}" method="POST" class="d-none">
                                                         @csrf
                                                         @method('GET')
@@ -241,7 +245,7 @@ if (isset($_SESSION['nav'])) {
                                                     </button>
 
                                                     
-                                                </td>
+                                                </td> --}}
                                             </tr>
                                         @endforeach
                                     </tbody>
@@ -270,18 +274,14 @@ $(document).ready(function(){
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
     });
-    $("#nav-pending-tab").click(function(){
-        setSession('nav','pending','{{route('nav')}}');
-    })
+    
     $("#nav-confirm-tab").click(function(){
         setSession('nav','confirm','{{route('nav')}}');
     })
     $("#nav-delivery-tab").click(function(){
         setSession('nav','delivery','{{route('nav')}}');
     })
-    $("#nav-cancel-tab").click(function(){
-        setSession('nav','cancel','{{route('nav')}}');
-    })
+    
     function setSession(key,value,url){
         $.ajax({
             url:url,
@@ -319,11 +319,11 @@ $(document).ready(function(){
             success:function(data){
                 if (data){
                     if (data=='today') {
-                        location.href= '{{route('order_list')}}';
+                        location.href= '{{route('orderlistpage')}}';
                     }else if (data=='all') {
-                        location.href= '{{route('order_list')}}';
+                        location.href= '{{route('orderlistpage')}}';
                     }else{
-                        location.href= '{{route('order_list')}}';
+                        location.href= '{{route('orderlistpage')}}';
                     }
                 }
             }

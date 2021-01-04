@@ -78,7 +78,7 @@
           <ul class="dropdown-menu settings-menu dropdown-menu-right">
             <li><a class="dropdown-item" href="page-user.html"><i class="fa fa-cog fa-lg"></i> Settings</a></li>
             <li><a class="dropdown-item" href="page-user.html"><i class="fa fa-user fa-lg"></i> Profile</a></li>
-            <li><a class="dropdown-item" href="page-login.html"><i class="fa fa-sign-out fa-lg"></i> Logout</a></li>
+            <li><a class="dropdown-item" href="/login"><i class="fa fa-sign-out fa-lg"></i> Logout</a></li>
           </ul>
         </li>
       </ul>
@@ -105,9 +105,9 @@
           </ul>
         </li> --}}
 
-        {{--  <li><a class="app-menu__item {{ Request::is('customers*')?'active':'' }}" href="{{ route('customers.index') }}"><i class="app-menu__icon fa fa-file-code-o"></i><span class="app-menu__label">Customers</span></a></li> --}}
+         <li><a class="app-menu__item" href="{{ route('confirmpage') }}"><i class="app-menu__icon fa fa-file-code-o"></i><span class="app-menu__label">Delivery</span></a></li>
 
-         <li><a class="app-menu__item" href="{{ route('confirmpage') }}"><i class="app-menu__icon fa fa-file-code-o"></i><span class="app-menu__label">Orders</span></a></li>
+        {{--  <li><a class="app-menu__item" href="{{ route('confirmpage') }}"><i class="app-menu__icon fa fa-file-code-o"></i><span class="app-menu__label">Orders</span></a></li> --}}
 
          {{-- <li><a class="app-menu__item {{ Request::is('ways*')?'active':'' }}" href="{{ route('ways.index') }}"><i class="app-menu__icon fa fa-file-code-o"></i><span class="app-menu__label">Ways</span></a></li>   --}}
       </ul>
@@ -127,7 +127,9 @@
     <script src="{{ asset('assets/js/plugins/pace.min.js')}}"></script>
     <!-- Page specific javascripts-->
     <script type="text/javascript" src="{{ asset('assets/js/plugins/chart.js')}}"></script>
-
+    <!-- Font-icon css-->
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
 
     <script type="text/javascript">
       var data = {
