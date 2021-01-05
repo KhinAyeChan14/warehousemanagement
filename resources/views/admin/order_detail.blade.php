@@ -27,7 +27,7 @@ use App\Product_order;
             <section class="invoice">
               <div class="row mb-4">
                 <div class="col-6">
-                  <h2 class="page-header"><i class="fa fa-globe"></i> <?= $customer['shop_name'] ?></h2>
+                  {{-- <h2 class="page-header"><i class="fa fa-globe"></i> <?= $customer['shop_name'] ?></h2> --}}
                 </div>
                 <div class="col-6">
                   <h5 class="text-right">Date: {{$order->order_date}}</h5>
@@ -35,22 +35,23 @@ use App\Product_order;
               </div>
               <div class="row invoice-info">
                 <div class="col-4">From
-                  <address><strong>Warehouse</strong>{{-- <br>user address<br>Email: {{$user->email}} --}}</address>
+                  <address><strong>Sonic Wholesale Supplier</strong>{{-- <br>user address<br>Email: {{$user->email}} --}}</address>
                 </div>
                 <div class="col-4">To
-                  <address><strong>{{ $customer->shop_name }}</strong><br>admin address<br>Email: {{ $customer->address }}</address>
+                  <address><strong>{{ $customer->shop_name }}</strong><br>Phone: {{ $customer->phone }}<br>Address: {{ $customer->address }}</address>
                 </div>
-                <div class="col-4"><b>Invoice #{{$order->voucher_no}}</b><br><br><b>Order ID:</b> {{$order->id}}<br><b>Payment Due:</b> -<br><b>Account ID:</b> {{$customer->id}}</div>
+                <div class="col-4"><b>Invoice #{{$order->voucher_no}}</b><br><br><b>Order ID:</b> {{$order->id}}<br><b>Account ID:</b> {{$customer->id}}</div>
               </div>
               <div class="row">
                 <div class="col-12 table-responsive">
                   <table class="table table-striped">
                     <thead>
                       <tr>
-                        <th>Qty</th>
                         <th>Product Name</th>
                         <th>Code</th>
-                        <th>Description</th>
+                        <th>Price</th>
+                        <th>Qty</th>
+                        <th>Unit</th>
                         <th>Subtotal</th>
                       </tr>
                     </thead>
@@ -72,16 +73,17 @@ use App\Product_order;
                     		@endphp
                           
 	                    <tr>
-	                    	<td>{{$product_order->quantity}}</td>
-                        <td>{{$product_order->units_of_measure}}</td>    
-	                      <td>{{$product->name}}</td> 
-	                      <td>{{$product->code_no}}</td> 
-	                      <td>{{$product->description}}</td> 
-	                      <td class="text-right">{{number_format(($product_order->quantity)*$price,2)}}</td>
+	                   
+                        <td>{{$product->name}}</td> 
+                        <td>{{$product->code_no}}</td>
+                        <td> {{$price}}</td>
+                        <td>{{$product_order->quantity}}</td>
+                        <td>{{$product_order->units_of_measure}}</td>
+                        <td class="text-right">{{number_format(($product_order->quantity)*$price,2)}}</td>
 	                    </tr>
                       	@endforeach
                       	<tr>
-                      		<td colspan="4" class="text-right font-weight-bold">Total</td>
+                      		<td colspan="5" class="text-right font-weight-bold">Total</td>
                       		<td class="text-right font-weight-bold">{{number_format($order->total,2)}}</td>
                       	</tr>
                     </tbody>

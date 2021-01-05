@@ -5,11 +5,10 @@
     <div class="app-title">
       <div>
         <h1><i class="fa fa-dashboard"></i> Ways</h1>
-        <p>A free and open source Bootstrap 4 admin template</p>
       </div>
       <ul class="app-breadcrumb breadcrumb">
         <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
-        <li class="breadcrumb-item"><a href="#">Ways</a></li>
+        <li class="breadcrumb-item"><a href="{{ route('ways.index') }}">Ways</a></li>
       </ul>
     </div>
 

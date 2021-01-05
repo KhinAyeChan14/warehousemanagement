@@ -52,7 +52,7 @@ class CustomerController extends Controller
         $customer->save();
 
         // redirect
-        return redirect()->route('customer.index');
+        return redirect()->route('customers.index');
     }
 
     /**

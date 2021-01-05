@@ -13,7 +13,7 @@
             
 
             <div class="table-responsive mt-3">
-              <table class="table table-bordered" id="sampleTable">
+              <table class="table table-bordered sampleTable">
                 <thead class="thead-dark">
                   <tr>
                     <th>#</th>

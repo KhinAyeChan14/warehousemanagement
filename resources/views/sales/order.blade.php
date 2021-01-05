@@ -27,7 +27,7 @@
       </div>
 
       <div>
-        <a class="btn btn-success btn-sm changeWay">Change Way</a>
+        <a class="btn btn-success btn-md changeWay">Change Way</a>
       </div>
       
     </div>
@@ -38,7 +38,7 @@
           <div class="tile-body">
             <h4 class="d-inline-block">Customers List</h4>
 
-            <div class="table-responsive mt-3" id="customertable">
+            <div class="table-responsive mt-3">
               <table class="table table-bordered sampleTable" >
                 <thead class="thead-dark">
                   <tr>
@@ -91,7 +91,7 @@
             <h4 class="d-inline-block">Ways List</h4>
             
 
-            <div class="table-responsive mt-3"  id="waytable">
+            <div class="table-responsive mt-3">
               <table class="table table-bordered sampleTable">
                <thead class="thead-dark">
                 <tr>
@@ -129,7 +129,7 @@
           <div class="tile-body">
             <h4 class="d-inline-block">Customer List</h4>
 
-             <div class="table-responsive mt-3" id="customertable">
+             <div class="table-responsive mt-3">
 
               <table class="table table-bordered sampleTable">
                <thead class="thead-dark">

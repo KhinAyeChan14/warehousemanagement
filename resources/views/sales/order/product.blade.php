@@ -7,19 +7,21 @@
   use App\Price_stock;
   // use Auth;
   session_start();
+
+  if (isset($_SESSION['way'])) {
   $wayid=$_SESSION['way'];
   $customerid=$_SESSION['customer'];
   $way=Way::find($wayid);
   $customer=Customer::find($customerid);
   // var_dump($customer->shop_name);
   // var_dump($way->township).die();
+}
 @endphp
 
 <main class="app-content">
     <div class="app-title">
       <div>
         <h1><i class="fa fa-dashboard"></i> Products</h1>
-        <p>A free and open source Bootstrap 4 admin template</p>
       </div>
       <ul class="app-breadcrumb breadcrumb">
         <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
@@ -35,8 +37,8 @@
             <a  href="{{route('orderdetailspage')}}" class="btn btn-success float-right">Done</a>
             
 
-       <div class="table-responsive mt-3">
-              <table class="table table-bordered" id="sampleTable">
+            <div class="table-responsive mt-3">
+              <table class="table table-bordered sampleTable">
                 <thead class="thead-dark">
             <tr>
               <th class="align-middle text-center" rowspan="2">No</th>
@@ -122,12 +124,12 @@
                     <td class="align-middle text-center">    
                     {{-- <a href="#" class="btn btn-warning btn-sm">Details</a> --}}
                     <button id='bt{{ $product->id }}' class="btn btn-warning btn-sm order"
-                      data-customer='{{$customerid}}'
                       @guest
                       data-user='none'
                       @else                      
                       data-user='{{Auth::user()->id}}'
                       @endguest
+                      data-customer='{{$customerid}}'
                       data-id='{{ $product->id }}'
                       data-name='{{ $product->name }}'
                       data-price='#price{{ $product->id }}'
@@ -198,7 +200,6 @@ if (localStorage.getItem("item")) {
     var unit=$(this).data('unit');
     var price=$(this).data('price');
 
-
     if (unit=='pc_price') {
       $('#sp1'+id).attr('style','text-shadow: 1px 1px red'); 
       $('#sp2'+id).attr('style',''); 
@@ -224,6 +225,7 @@ if (localStorage.getItem("item")) {
 
   $(document).on('click','.order',function(){
     var customer=$(this).data('customer');
+    // alert(customer);
     var user=$(this).data('user');
     var id=$(this).data('id');
     var name=$(this).data('name');
@@ -296,13 +298,13 @@ if (localStorage.getItem("item")) {
               stringItem=JSON.stringify(itemArray);
               localStorage.setItem("item",stringItem);
           }else{
-            alert('Balance Not Enough');
+            alert('Sorry!!!Balance Not Enough.');
             $(qty_id).val(old_qty);
           }
         }
       })
       }else{
-        alert('You Must Be Choose Price!');
+        alert('Firstly, You Must Choose Price!');
       }
 
 

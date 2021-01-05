@@ -129,16 +129,16 @@
    <div class="animation-ctn">
          <div class="icon icon--order-success svg">
            <svg xmlns="http://www.w3.org/2000/svg" width="154px" height="154px">
-               <g fill="none" stroke="#482ff7" stroke-width="2">
+               <g fill="none" stroke="#0b8457" stroke-width="2">
                  <circle cx="77" cy="77" r="72" style="stroke-dasharray:480px, 480px; stroke-dashoffset: 960px;"></circle>
-                 <circle id="colored" fill="#482ff7" cx="77" cy="77" r="72" style="stroke-dasharray:480px, 480px; stroke-dashoffset: 960px;"></circle>
+                 <circle id="colored" fill="#0b8457" cx="77" cy="77" r="72" style="stroke-dasharray:480px, 480px; stroke-dashoffset: 960px;"></circle>
                  <polyline class="st0" stroke="#fff" stroke-width="10" points="43.5,77.8 63.7,97.9 112.2,49.4 " style="stroke-dasharray:100px, 100px; stroke-dashoffset: 200px;"/>
                </g>
            </svg>
        </div>
        <br />
        <h2>Order Success</h2>
-     <p>Your order is on its way!</p>
+     <p>Your order is placed!</p>
      <!-- <p> Txn Amount: 15,000</p>
      <span class="alert">कृपया पछाडि जानको लागि <b>Back Button</b>  दाब्नुहोस्।</span> -->
    </div>

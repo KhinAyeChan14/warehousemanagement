@@ -68,7 +68,7 @@
             <td>${number}</td>
             <td>${v.name}</td>
             <td><p> ${v.qty}</p></td>
-            <td><p> #</p></td>
+            <td><p> ${v.unit}</p></td>
             <td><p> ${v.price} Ks</p></td>
             <td>${subtotal} Ks</td>
             </tr>`
@@ -100,14 +100,15 @@
 
         var item=localStorage.getItem('item');   
         var itemArray=JSON.parse(item);
-        // var customer=${itemArray[0].customer};
         var total=itemArray.reduce((acc,row)=>acc+(row.price*row.qty),0);
-        // alert(total);
+        var customer=itemArray[0].customer;
+        // alert(customer);
 
         // var id="check";
           $.post("{{route('orders.store')}}", { 
             item:item,
-            total:total
+            total:total,
+            customer:customer
              
         },function (response) {
          if(response=='Order Successful'){

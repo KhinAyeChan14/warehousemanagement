@@ -10,7 +10,6 @@
   <div class="app-title">
     <div>
       <h1><i class="fa fa-dashboard"></i> Products</h1>
-      <p>A free and open source Bootstrap 4 admin template</p>
     </div>
     <ul class="app-breadcrumb breadcrumb">
       <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
@@ -85,3 +84,8 @@
   </main>
 @endsection
 
+@section('script')
+  <script type="text/javascript" src="{{asset('assets/js/plugins/jquery.dataTables.min.js')}}"></script>
+  <script type="text/javascript" src="{{asset('assets/js/plugins/dataTables.bootstrap.min.js')}}"></script>
+  <script type="text/javascript">$('#sampleTable').DataTable();</script>
+@endsection

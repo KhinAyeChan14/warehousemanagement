@@ -40,20 +40,20 @@ class OrderController extends Controller
     {   
 
         // echo 'Order Successful';
-        // dd($request->item);
+        // dd($request->total);
         DB::transaction(function() use ($request) {
         $item = json_decode($request->item);
-
+       
         $order = new Order;
         $order->order_date = date('Y-m-d');
         $order->voucher_no = uniqid();
         $order->total = $request->total;
         $order->user_id = Auth::id();
-        $order->customer_id = $item[0]->customer;
+        $order->customer_id = $request->customer;
         $order->save();
 
         foreach ($item as $row) {
-            $order->products()->attach($row->id,['quantity'=>$row->qty,'units_of_measure'=>"pc"]);
+            $order->products()->attach($row->id,['quantity'=>$row->qty,'units_of_measure'=>$row->unit]);
         }
         echo 'Order Successful';
 

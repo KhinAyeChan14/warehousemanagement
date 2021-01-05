@@ -244,8 +244,12 @@ if (isset($_SESSION['nav'])) {
                                         @php
                                         $uid=$data->user_id;
                                         $user = User::where('id',$uid)->first();
+                                        // var_dump($user).die();
                                         $cid=$data->customer_id;
+                                        // var_dump($cid).die();
+
                                         $customer = Customer::where('id',$cid)->first();
+                                        // var_dump($customer).die();
                                         @endphp
                                             <tr>
                                                 <td class="align-middle text-center">{{$i++}}</td>
@@ -258,7 +262,7 @@ if (isset($_SESSION['nav'])) {
                                                         @csrf
                                                         @method('GET')
                                                         <input type="text" name="id" value="{{$data->id}}">
-                                                        <input type="text" name="cid" value="{{$customer->id}}">
+                                                        <input type="text" name="cid" value="{{$data->customer_id}}">
                                                       </form>
                                                     <button class="btn btn-outline-info" onclick="document.getElementById('info{{$data->id}}').submit();">
                                                         <i class="fas fa-info"></i>
@@ -319,6 +323,7 @@ if (isset($_SESSION['nav'])) {
                                                         @csrf
                                                         @method('GET')
                                                         <input type="text" name="id" value="{{$data->id}}">
+                                                        <input type="text" name="cid" value="{{$data->customer_id}}">
                                                       </form>
                                                     <button class="btn btn-outline-info" onclick="document.getElementById('info{{$data->id}}').submit();">
                                                         <i class="fas fa-info"></i>
@@ -365,10 +370,12 @@ if (isset($_SESSION['nav'])) {
                                                 <td class="align-middle text-center">{{$data->voucher_no}}</td>
                                                  <td class="align-middle text-center">{{$data->total}}</td>
                                                 <td class="align-middle text-center">
+
                                                     <form id="info{{$data->id}}" action="{{route('orderinfo')}}" method="POST" class="d-none">
                                                         @csrf
                                                         @method('GET')
                                                         <input type="text" name="id" value="{{$data->id}}">
+                                                        <input type="text" name="cid" value="{{$data->customer_id}}">
                                                       </form>
                                                     <button class="btn btn-outline-info" onclick="document.getElementById('info{{$data->id}}').submit();">
                                                         <i class="fas fa-info"></i>
@@ -417,6 +424,7 @@ if (isset($_SESSION['nav'])) {
                                                         @csrf
                                                         @method('GET')
                                                         <input type="text" name="id" value="{{$data->id}}">
+                                                        <input type="text" name="cid" value="{{$data->customer_id}}">
                                                         
                                                     </form>
                                                     <button class="btn btn-outline-info" onclick="document.getElementById('info{{$data->id}}').submit();">
@@ -456,7 +464,7 @@ if (isset($_SESSION['nav'])) {
                                                         @csrf
                                                         @method('GET')
                                                         <input type="text" name="id" value="{{$data->id}}">
-                                                        
+                                                        <input type="text" name="cid" value="{{$data->customer_id}}">
                                                     </form>
                                                     <button class="btn btn-outline-info" onclick="document.getElementById('info{{$data->id}}').submit();">
                                                         <i class="fas fa-info"></i>
@@ -478,6 +486,7 @@ if (isset($_SESSION['nav'])) {
 @endsection
 
 @section('script')
+
 <script type="text/javascript">
 $(document).ready(function(){
     // for ajax

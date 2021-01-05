@@ -13,12 +13,6 @@ $all='';
 $confirmStatus = "Confirm";
 $deliveryStatus = "Delivery";
 
-// temp
-// $_SESSION['startDate']='2020-12-22';
-// $_SESSION['endDate']='2020-12-23';
-// unset($_SESSION['startDate']);
-// unset($_SESSION['endDate']);
-// temp
     if (isset($_SESSION['startDate'])&&isset($_SESSION['endDate'])) {
     // for button active
     $search=' active';
@@ -75,27 +69,49 @@ $deliveryStatus = "Delivery";
                           ->where('order_date',$todayDate)
                           ->get();
     }
-if (isset($_SESSION['nav'])) {
-    if ($_SESSION['nav']=='confirm') {
-        $confirm=' active';
-        $delivery='';
-        $confirm_tab=' show active';
-        $delivery_tab='';
-    }
-    if ($_SESSION['nav']=='delivery') {
-        $confirm='';
-        $delivery=' active';
-        $confirm_tab='';
-        $delivery_tab=' show active';
-    }
+
+
+// if (isset($_SESSION['nav'])) {
+//     if ($_SESSION['nav']=='confirm') {
+//         $confirm=' active';
+//         $delivery='';
+//         $confirm_tab=' show active';
+//         $delivery_tab='';
+//     }
     
-} else {
-    $confirm=' active';
-    $delivery='';
-    $confirm_tab=' show active';
-    $delivery_tab='';
-}
+    
+// } else {
+//     $confirm='';
+//     $delivery='active';
+//     $confirm_tab='';
+//     $delivery_tab=' show active';
+// }
+
+    if (isset($_SESSION['nav'])) {
+        if ($_SESSION['nav']=='confirm') {
+            $confirm=' active';
+            $delivery='';
+            $confirm_tab=' show active';
+            $delivery_tab='';
+        }
+        else{
+            $confirm='';
+            $delivery=' active';
+            $confirm_tab=' ';
+            $delivery_tab='show active';
+        }
+
+    }
+    else {
+            $confirm=' active';
+            $delivery='';
+            $confirm_tab=' show active';
+            $delivery_tab='';
+        }
+   
+ 
 @endphp
+
 
 <main class="app-content">
 
@@ -141,7 +157,7 @@ if (isset($_SESSION['nav'])) {
                 <div class="tile-body">
                     <nav>
                         <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                            <a class="nav-link {{$confirm}} " id="nav-confirm-tab" data-toggle="tab" href="#nav-confirm" role="tab" aria-controls="nav-confirm" aria-selected="false">  Order - Confirm </a>
+                            <a class="nav-link {{$confirm}} " id="nav-confirm-tab" data-toggle="tab" href="#nav-confirm" role="tab" aria-controls="nav-confirm" aria-selected="false">  Order - Confirm </a> 
                             <a class="nav-link {{$delivery}} " id="nav-delivery-tab" data-toggle="tab" href="#nav-delivery" role="tab" aria-controls="nav-delivery" aria-selected="false">  Order - Delivery </a>
                         </div>
                     </nav>
@@ -312,11 +328,14 @@ $(document).ready(function(){
         search(startDate,endDate,'{{route('search')}}')
     });
     function search(start,end,url){
+
+        // alert("OK");
         $.ajax({
             url:url,
             method:"GET",
             data:{start:start,end:end},
             success:function(data){
+                // alert("Success");
                 if (data){
                     if (data=='today') {
                         location.href= '{{route('orderlistpage')}}';

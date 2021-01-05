@@ -18,15 +18,15 @@ Route::get('/', function () {
 });
 
 Auth::routes();
+// Auth::routes(['register'=>false]);
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/admin','MainController@admin')->name('adminpage');
-
-Route::get('/sales','MainController@sales')->name('salespage');
 
 // Sales Page
+Route::middleware('role:sales_staff')->group(function(){
 
+Route::get('/sales','MainController@sales')->name('salespage');
 Route::get('product','MainController@product')->name('productpage');
 Route::get('orderdetails','MainController@orderdetails')->name('orderdetailspage');
 Route::get('ordersuccess','MainController@ordersuccess')->name('ordersuccesspage');
@@ -37,27 +37,32 @@ Route::get('way','WayController@session')->name('session');
 Route::resource('price_stocks','PriceStockController');
 Route::get('quantity/reative','ProductController@qty_reactive')->name('qty_reactive');
 
+});
 
 // Admin Page
+Route::middleware('role:admin')->group(function(){
+
+Route::get('/admin','MainController@admin')->name('adminpage');
 Route::resource('categories','CategoryController');
 Route::resource('brands','BrandController');
 Route::resource('subcategories','SubcategoryController');
-Route::resource('products','ProductController');
 Route::get('orderlist','MainController@orderlist')->name('orderlistpage');
 Route::get('/changestatus','OrderController@changestatus')->name('changestatuspage');
+// Order
+Route::get('/info','OrderController@info')->name('orderinfo');
+Route::get('/status','OrderController@status')->name('status');
+Route::get('/nav','OrderController@nav')->name('nav');
+Route::get('/search','OrderController@search')->name('search');
+Route::get('/earning','OrderController@earning')->name('earning');
+Route::get('/orderdetail','OrderController@detail')->name('orderdetail');
 
+});
 
 // Delivery Page
 Route::get('/delivery','MainController@confirmlist')->name('confirmpage');
 
-// Order
 Route::resource('orders','OrderController');
-Route::get('/order/detail','OrderController@info')->name('orderinfo');
-Route::get('/status','OrderController@status')->name('status');
+Route::resource('ways','WayController');
+Route::get('way','WayController@session')->name('session');
+Route::resource('products','ProductController');
 Route::get('/delistatus','OrderController@delistatus')->name('delistatus');
-Route::get('/nav','OrderController@nav')->name('nav');
-Route::get('/search','OrderController@search')->name('search');
-Route::resource('orders','OrderController');
-
-Route::get('/earning','OrderController@earning')->name('earning');
-Route::get('/orderdetail','OrderController@detail')->name('orderdetail');

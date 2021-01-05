@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="description" content="Vali is a responsive and free admin theme built with Bootstrap 4, SASS and PUG.js. It's fully customizable and modular.">
     <!-- Twitter meta-->
     <meta property="twitter:card" content="summary_large_image">
@@ -133,7 +135,7 @@
     @yield('content')
 
 
-    @yield('script')
+    {{-- @yield('script') --}}
 
 
     <script type="text/javascript" src="{{asset('js/plugins/jquery.dataTables.min.js')}}"></script>
@@ -142,16 +144,15 @@
     <script type="text/javascript">$('#waytable').DataTable();</script>
     <script type="text/javascript">$('#table').DataTable();</script>
 
-
     <!-- Essential javascripts for application to work-->
     <script src="{{ asset('assets/js/jquery-3.3.1.min.js')}}"></script>
     <script src="{{ asset('assets/js/popper.min.js')}}"></script>
     <script src="{{ asset('assets/js/bootstrap.min.js')}}"></script>
     <script src="{{ asset('assets/js/main.js')}}"></script>
     <!-- The javascript plugin to display page loading on top-->
-    <script src="{{ asset('assets/js/plugins/pace.min.js')}}"></script>
+    {{-- <script src="{{ asset('assets/js/plugins/pace.min.js')}}"></script> --}}
     <!-- Page specific javascripts-->
-    <script type="text/javascript" src="{{ asset('assets/js/plugins/chart.js')}}"></script>
+    {{-- <script type="text/javascript" src="{{ asset('assets/js/plugins/chart.js')}}"></script> --}}
 
   {{-- </body> --}}
 
