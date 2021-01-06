@@ -113,7 +113,7 @@
 
          <li><a class="app-menu__item" href="{{ route('customers.index') }}"><i class="app-menu__icon fa fa-file-code-o"></i><span class="app-menu__label">Customers</span></a></li>
 
-         <li><a class="app-menu__item" {{-- {{ Request::is('orders*')?'active':'' }}" --}} href="#"><i class="app-menu__icon fa fa-file-code-o"></i><span class="app-menu__label">Order History</span></a></li> 
+         <li><a class="app-menu__item" {{-- {{ Request::is('orders*')?'active':'' }}" --}} href="{{ route('orders.index') }}"><i class="app-menu__icon fa fa-file-code-o"></i><span class="app-menu__label">Order History</span></a></li> 
       </ul>
     </aside>
     
@@ -140,7 +140,8 @@
    <script type="text/javascript">$('#waytable').DataTable();</script> --}}
    <script type="text/javascript">$('.sampleTable').DataTable();</script>
 
-
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
 
 
     <script type="text/javascript">

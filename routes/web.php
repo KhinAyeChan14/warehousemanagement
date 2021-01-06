@@ -17,6 +17,13 @@ Route::get('/', function () {
     return view('auth.login');
 });
 
+Route::get('/register', function () {
+    return view('auth.register');
+});
+
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 Auth::routes();
 // Auth::routes(['register'=>false]);
 
@@ -41,20 +48,11 @@ Route::get('quantity/reative','ProductController@qty_reactive')->name('qty_react
 
 // Admin Page
 Route::middleware('role:admin')->group(function(){
-
 Route::get('/admin','MainController@admin')->name('adminpage');
 Route::resource('categories','CategoryController');
 Route::resource('brands','BrandController');
 Route::resource('subcategories','SubcategoryController');
-Route::get('orderlist','MainController@orderlist')->name('orderlistpage');
 Route::get('/changestatus','OrderController@changestatus')->name('changestatuspage');
-// Order
-Route::get('/info','OrderController@info')->name('orderinfo');
-Route::get('/status','OrderController@status')->name('status');
-Route::get('/nav','OrderController@nav')->name('nav');
-Route::get('/search','OrderController@search')->name('search');
-Route::get('/earning','OrderController@earning')->name('earning');
-Route::get('/orderdetail','OrderController@detail')->name('orderdetail');
 
 });
 
@@ -66,3 +64,17 @@ Route::resource('ways','WayController');
 Route::get('way','WayController@session')->name('session');
 Route::resource('products','ProductController');
 Route::get('/delistatus','OrderController@delistatus')->name('delistatus');
+
+// Order
+Route::get('/info','OrderController@info')->name('orderinfo');
+Route::get('/status','OrderController@status')->name('status');
+Route::get('/nav','OrderController@nav')->name('nav');
+Route::get('/search','OrderController@search')->name('search');
+Route::get('/earning','OrderController@earning')->name('earning');
+Route::get('/orderdetail','OrderController@detail')->name('orderdetail');
+Route::get('orderlist','MainController@orderlist')->name('orderlistpage');
+Route::get('/user','OrderController@user')->name('user');
+
+
+//Registration
+Route::get('registration', 'AuthController@registration')->name('registerpage');

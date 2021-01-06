@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Order;
 use App\Customer;
+use App\User;
 use Illuminate\Http\Request;
 use Auth;
 use Illuminate\Support\Facades\DB;
@@ -17,7 +18,8 @@ class OrderController extends Controller
      */
     public function index()
     {
-        //
+        $orders=Order::orderBy('id','desc')->get();
+        return view('sales.order.index',compact('orders'));
     }
 
     /**
@@ -190,6 +192,25 @@ class OrderController extends Controller
         echo 'done';
     }
 
+     /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\User  $user
+     * @return \Illuminate\Http\Response
+     */
+    public function user(Request $request, User $user)
+    {
+
+        session_start();
+        $key = $request->key;
+        $value = $request->value;
+
+        $_SESSION[$key]=$value;
+        echo 'done';
+
+    }
+
     /**
      * Update the specified resource in storage.
      *
@@ -288,4 +309,7 @@ class OrderController extends Controller
 //     echo json_encode($total);
 //     }
 // backend order panel
+
+
+    
 }

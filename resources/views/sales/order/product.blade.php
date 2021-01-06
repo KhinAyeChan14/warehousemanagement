@@ -9,8 +9,12 @@
   session_start();
 
   if (isset($_SESSION['way'])) {
+  
+
   $wayid=$_SESSION['way'];
+  // dd($wayid);  
   $customerid=$_SESSION['customer'];
+  // dd($customerid);
   $way=Way::find($wayid);
   $customer=Customer::find($customerid);
   // var_dump($customer->shop_name);
@@ -235,6 +239,7 @@ if (localStorage.getItem("item")) {
     var unit=$(unit_id).val();
     var qty_id=$(this).data('qty');
     var qty=$(qty_id).val();
+
     if (unit) {
     var item={
         id:id,
@@ -244,7 +249,6 @@ if (localStorage.getItem("item")) {
         unit:unit,
         user:user,
         customer:customer,
-        // unit:unit,
       }
       var itemList=localStorage.getItem("item");
       var itemArray;
@@ -254,8 +258,8 @@ if (localStorage.getItem("item")) {
         itemArray=JSON.parse(itemList);   
         itemArray.forEach(function(v,i){
           if (v.id==id) {
-            old_qty=v.qty;
-            v.qty=qty;
+            // old_qty=v.qty;
+            v.qty=parseInt(qty)+parseInt(v.qty);
             hit=true;
             // console.log('hit')
           }
@@ -270,31 +274,34 @@ if (localStorage.getItem("item")) {
         itemArray.push(item);
       }
 
-      // stringItem=JSON.stringify(itemArray);
-      // localStorage.setItem("item",stringItem);
-
       $.ajax({
         url:'{{ route('qty_reactive') }}',
         method:'GET',
         data:{id:id,qty:qty,oqty:old_qty,unit:unit},
         success:function(ans){
-          if (ans!='error') {
+          var ans=JSON.parse(ans);
+          console.log(ans.error);
+          if (ans.error!='error') {   // modify
             if (unit=='pc') {
-              $('#pc'+id).text(ans);
+              $('#dc'+id).text(ans.doz);
+              $('#sc'+id).text(ans.set);
+              $('#pc'+id).text(ans.pcs);
               $('#pc'+id).attr('style','text-shadow: 1px 1px red'); 
-              $('#dc'+id).attr('style',''); 
-              $('#sc'+id).attr('style',''); 
+              $('#dc'+id).attr('style','');
+              $('#sc'+id).attr('style','');
             }else if(unit=='dozen'){
-              $('#dc'+id).text(ans);
-              $('#pc'+id).attr('style',''); 
+              $('#dc'+id).text(ans.doz);
+              $('#sc'+id).text(ans.set);
+              $('#pc'+id).text(ans.pcs);
+              $('#pc'+id).attr('style','');
               $('#dc'+id).attr('style','text-shadow: 1px 1px red'); 
-              $('#sc'+id).attr('style',''); 
+              $('#sc'+id).attr('style','');
             }else{
-              $('#sc'+id).text(ans);
-              $('#pc'+id).attr('style',''); 
-              $('#dc'+id).attr('style',''); 
+              // $('#sc'+id).text(ans);
+              $('#pc'+id).attr('style','');
+              $('#dc'+id).attr('style','');
               $('#sc'+id).attr('style','text-shadow: 1px 1px red'); 
-            }
+            }                   // modify
               stringItem=JSON.stringify(itemArray);
               localStorage.setItem("item",stringItem);
           }else{
@@ -303,7 +310,7 @@ if (localStorage.getItem("item")) {
           }
         }
       })
-      }else{
+      }else{  // else of if(unit)
         alert('Firstly, You Must Choose Price!');
       }
 

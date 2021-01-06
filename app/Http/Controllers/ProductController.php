@@ -161,12 +161,81 @@ class ProductController extends Controller
         //     ->get();
 
         // if ($newQty>$oldQty) {
+        $ans=array(
+            'error'=>null,
+            'pcs'=>0,
+            'doz'=>0,
+            'set'=>0,
+        );
         if ($product[0]->$count<($newQty-$oldQty)) {
-            echo "error";
+            if ($count=='pcs_count') {
+                $debt_temp=round(($newQty)/12,0);   //ans 2
+                $bal_temp=(($debt_temp*12)+$product[0]->$count)-$newQty;
+                if ($bal_temp>=12) { // 22 ~ 12
+                    $debt_temp--;
+                }
+
+                $final_temp=(($debt_temp*12)+$product[0]->$count)-$newQty;   
+                if ($product[0]->dozens_count>=$debt_temp) {
+                    $product[0]->dozens_count=$product[0]->dozens_count-$debt_temp;
+                    $product[0]->$count=$final_temp;
+                    // dd($product[0]->dozens_count);
+                    // var_dump($newQty-$oldQty);
+                    // var_dump($product[0]->$count);
+                    // dd($product[0]->sets_count);
+                    $product[0]->save();
+                    $ans['pcs']=$product[0]->pcs_count;
+                    $ans['doz']=$product[0]->dozens_count;
+                    $ans['set']=$product[0]->sets_count;
+                    echo json_encode($ans);
+                }else{
+                    // echo "error";
+                    $ans['error']='error';
+                    echo json_encode($ans);
+                }
+
+
+            }elseif ($count=='dozens_count') {
+                 // dd('kdkdk');
+                $debt_temp=round(($newQty-$oldQty)/8,0);   //ans 2
+                $bal_temp=(($debt_temp*8)+$product[0]->$count)-($newQty-$oldQty);
+                if ($bal_temp>=8) { // 22 ~ 12
+                    $debt_temp--;
+                }
+                $final_temp=(($debt_temp*8)+$product[0]->$count)-($newQty-$oldQty);
+                // dd($final_temp);
+                if ($product[0]->sets_count>=$debt_temp) {
+                    $product[0]->sets_count=$product[0]->sets_count-$debt_temp;
+                    $product[0]->$count=$final_temp;
+                    // var_dump($newQty-$oldQty);
+                    // var_dump($product[0]->$count);
+                    // dd($product[0]->sets_count);
+                    $product[0]->save();
+                    $ans['pcs']=$product[0]->pcs_count;
+                    $ans['doz']=$product[0]->dozens_count;
+                    $ans['set']=$product[0]->sets_count;
+                    echo json_encode($ans);
+                }else{
+                    // echo "error";
+                    $ans['error']='error';
+                    echo json_encode($ans);
+                }
+                // $product[0]->sets_count=$product[0]->sets_count-$debt_temp;
+                // dd($debt_temp);
+
+                
+                // $product[0]->$count
+            }else{
+               $ans['error']='error';
+               echo json_encode($ans);
+            }
         }else{
             $product[0]->$count=$product[0]->$count-($newQty-$oldQty);
             $product[0]->save();
-            echo ($product[0]->$count);
+            $ans['pcs']=$product[0]->pcs_count;
+            $ans['doz']=$product[0]->dozens_count;
+            $ans['set']=$product[0]->sets_count;
+            echo json_encode($ans);
         }        
     });
     }

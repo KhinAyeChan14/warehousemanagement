@@ -127,6 +127,8 @@
          <li><a class="app-menu__item" href="{{ route('orderlistpage') }}"><i class="app-menu__icon fa fa-file-code-o"></i><span class="app-menu__label">Orders</span></a></li>
 
          <li><a class="app-menu__item {{ Request::is('ways*')?'active':'' }}" href="{{ route('ways.index') }}"><i class="app-menu__icon fa fa-file-code-o"></i><span class="app-menu__label">Ways</span></a></li>  
+
+         <li><a class="app-menu__item" href="{{ route('registerpage') }}"><i class="app-menu__icon fa fa-file-code-o"></i><span class="app-menu__label">Register</span></a></li>  
       </ul>
     </aside>
     

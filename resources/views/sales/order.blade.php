@@ -174,8 +174,9 @@
   
     $(document).on('click','.chooseWay',function(){
       var id=$(this).data('id');
-
       setSession('way',id,'{{route('session')}}');
+
+
     $.ajax({
                 url:'{{route('getCustomerpage')}}',
                 method:"GET",
@@ -193,7 +194,7 @@
                          <td>${v.shop_name}</td>
                          <td>${v.phone}</td>
                          <td>${v.address}</td>
-                         <td><button class="btn btn-warning btn-sm chooseCustomer" data-wid="{{$way->id}} data-cid="${v.id}">Choose</button></td>
+                         <td><button class="btn btn-warning btn-sm chooseCustomer" data-wid="{{$way->id}}" data-cid="${v.id}">Choose</button></td>
                        </tr>`
                     });
 
