@@ -63,16 +63,17 @@ class RegisterController extends Controller
      * @return \App\User
      */
     protected function create(array $data)
-    {
+    {    
+        dd($data);
          $user=User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
 
-         if (str_contains($data['email'], 'sale')) 
-            $user->assignRole('sales_staff');
-        else
+        //  if (str_contains($data['email'], 'sale')) 
+        //     $user->assignRole('sales_staff');
+        // else
             $user->assignRole('delivery');
         
         return $user;

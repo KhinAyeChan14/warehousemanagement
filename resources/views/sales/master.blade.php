@@ -35,7 +35,7 @@
           <button class="app-search__button"><i class="fa fa-search"></i></button>
         </li>
         <!--Notification Menu-->
-        <li class="dropdown"><a class="app-nav__item" href="#" data-toggle="dropdown" aria-label="Show notifications"><i class="fa fa-bell-o fa-lg"></i></a>
+        {{-- <li class="dropdown"><a class="app-nav__item" href="#" data-toggle="dropdown" aria-label="Show notifications"><i class="fa fa-bell-o fa-lg"></i></a>
           <ul class="app-notification dropdown-menu dropdown-menu-right">
             <li class="app-notification__title">You have 4 new notifications.</li>
             <div class="app-notification__content">
@@ -74,7 +74,7 @@
             </div>
             <li class="app-notification__footer"><a href="#">See all notifications.</a></li>
           </ul>
-        </li>
+        </li> --}}
         <!-- User Menu-->
         <li class="dropdown"><a class="app-nav__item" href="#" data-toggle="dropdown" aria-label="Open Profile Menu"><i class="fa fa-user fa-lg"></i></a>
           <ul class="dropdown-menu settings-menu dropdown-menu-right">
@@ -101,19 +101,19 @@
     <aside class="app-sidebar">
       <div class="app-sidebar__user">
         <div>
-          <p class="app-sidebar__user-name">{{-- Auth::user()->id --}}</p>
-          <p class="app-sidebar__user-designation">Sales Staff</p>
+          <p class="app-sidebar__user-name">{{ Auth::user()->name}}</p>
+          <p class="app-sidebar__user-designation mt-3">Sales Staff</p>
         </div>
       </div>
 
       <ul class="app-menu">
-        <li><a class="app-menu__item" href="{{ route('salespage') }}"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">Orders</span></a></li>
+        <li><a class="app-menu__item" href="{{ route('salespage') }}"><i class="app-menu__icon fa fa-file-code-o"></i><span class="app-menu__label">Order</span></a></li>
 
-        {{--  <li><a class="app-menu__item" href="{{ route('products.index') }}"><i class="app-menu__icon fa fa-file-code-o"></i><span class="app-menu__label">Products</span></a></li> --}}
+        <li><a class="app-menu__item" {{-- {{ Request::is('orders*')?'active':'' }}" --}} href="{{ route('orders.index') }}"><i class="app-menu__icon fa fa-file-code-o"></i><span class="app-menu__label">Order History</span></a></li> 
 
          <li><a class="app-menu__item" href="{{ route('customers.index') }}"><i class="app-menu__icon fa fa-file-code-o"></i><span class="app-menu__label">Customers</span></a></li>
 
-         <li><a class="app-menu__item" {{-- {{ Request::is('orders*')?'active':'' }}" --}} href="{{ route('orders.index') }}"><i class="app-menu__icon fa fa-file-code-o"></i><span class="app-menu__label">Order History</span></a></li> 
+         
       </ul>
     </aside>
     
@@ -132,13 +132,13 @@
     <!-- Page specific javascripts-->
     <script type="text/javascript" src="{{ asset('assets/js/plugins/chart.js')}}"></script>
 
-
     {{-- Datatable --}}
     <script type="text/javascript" src="{{asset('assets/js/plugins/jquery.dataTables.min.js')}}"></script>
     <script type="text/javascript" src="{{asset('assets/js/plugins/dataTables.bootstrap.min.js')}}"></script>
-   {{-- <script type="text/javascript">$('#customerable').DataTable();</script>
-   <script type="text/javascript">$('#waytable').DataTable();</script> --}}
-   <script type="text/javascript">$('.sampleTable').DataTable();</script>
+    <script type="text/javascript">$('.sampleTable').DataTable();</script>
+
+
+    
 
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
@@ -210,5 +210,5 @@
 </html>
   
 
-
+@yield('tablescript')
 

@@ -7,6 +7,8 @@ use App\Product;
 use App\Way;
 use App\Customer;
 use App\Price_stock;
+use App\User;
+
 
 class MainController extends Controller
 {
@@ -47,6 +49,12 @@ class MainController extends Controller
     public function orderlist($value='')
     {   
         return view('admin.orderlist');
+    }
+
+    public function userlist($value='')
+    {   
+        $users = User::orderBy('id','desc')->get();
+        return view('admin.users',compact('users'));
     }
 
 }

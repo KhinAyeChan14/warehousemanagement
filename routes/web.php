@@ -53,6 +53,8 @@ Route::resource('categories','CategoryController');
 Route::resource('brands','BrandController');
 Route::resource('subcategories','SubcategoryController');
 Route::get('/changestatus','OrderController@changestatus')->name('changestatuspage');
+Route::get('userlist','MainController@userlist')->name('userpage');
+
 
 });
 

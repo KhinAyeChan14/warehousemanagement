@@ -128,7 +128,7 @@
 
          <li><a class="app-menu__item {{ Request::is('ways*')?'active':'' }}" href="{{ route('ways.index') }}"><i class="app-menu__icon fa fa-file-code-o"></i><span class="app-menu__label">Ways</span></a></li>  
 
-         <li><a class="app-menu__item" href="{{ route('registerpage') }}"><i class="app-menu__icon fa fa-file-code-o"></i><span class="app-menu__label">Register</span></a></li>  
+         <li><a class="app-menu__item" href="{{ route('userpage') }}"><i class="app-menu__icon fa fa-file-code-o"></i><span class="app-menu__label">Register</span></a></li>  
       </ul>
     </aside>
     
@@ -145,6 +145,8 @@
     <script type="text/javascript">$('#table').DataTable();</script>
     <script type="text/javascript">$('#waytable').DataTable();</script>
     <script type="text/javascript">$('#table').DataTable();</script>
+    <script type="text/javascript">$('.sampleTable').DataTable();</script>
+
 
     <!-- Essential javascripts for application to work-->
     <script src="{{ asset('assets/js/jquery-3.3.1.min.js')}}"></script>

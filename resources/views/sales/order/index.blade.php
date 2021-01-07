@@ -114,40 +114,11 @@ if (isset($_SESSION['nav'])) {
             <div class="tile">
                 <h3 class="tile-title">Order History </h3>
                 <div class="tile-body">
-                    {{-- <form class="row">
-                        <div class="form-group col-md-4">
-                            <label class="control-label">Start Date</label>
-                            <input class="form-control" type="date" id="startDate">
-                        </div>
-                        <div class="form-group col-md-4">
-                            <label class="control-label">End Date</label>
-                            <input class="form-control" type="date" id="endDate">
-                        </div>
-                        <div class="form-group col-md-4 align-self-end">
-                            <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                              <label class="btn btn-primary searchBtn mr-5{{$search}}">  
-                                <input type="radio" name="options" id="option1" autocomplete="off" {{$search_chk}}> Search
-                              </label>
-                              <label class="btn btn-primary allBtn mr-5{{$alls}}"> 
-                                <input type="radio" name="options" id="option2" autocomplete="off" {{$alls_chk}}> All
-                              </label>
-                              <label class="btn btn-primary todayBtn mr-5{{$today}}">  
-                                <input type="radio" name="options" id="option3" autocomplete="off" {{$today_chk}}> Today
-                              </label>
-                            </div>
-                        </div>
-                    </form> --}}
+                    
                 </div>
             </div>
 
             <div class="tile">
-                {{-- @if ($label_S_date!='')
-                    <h3>Search From {{$label_S_date}} To {{$label_e_date}} </h3>
-                @elseif($all!='')
-                    <h3> All data </h3>
-                @else
-                    <h3> {{$todayDate}} </h3>
-                @endif --}}
                 <div class="tile-body">
                     <nav>
                         <div class="nav nav-tabs" id="nav-tab" role="tablist">
@@ -162,11 +133,11 @@ if (isset($_SESSION['nav'])) {
                                     <thead>
                                         <tr>
                                             <th class="align-middle text-center">No</th>
+                                            <th class="align-middle text-center">Order Date</th>
                                             <th class="align-middle text-center">Sales Staff</th>
                                             <th class="align-middle text-center">Shop Name</th>
                                             <th class="align-middle text-center">Voucher No</th>
                                             <th class="align-middle text-center">Total</th>
-                                            <th class="align-middle text-center">Details</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -187,23 +158,11 @@ if (isset($_SESSION['nav'])) {
                                         @endphp
                                             <tr>
                                                 <td class="align-middle text-center">{{$i++}}</td>
+                                                <td class="align-middle text-center">{{$data->order_date}}</td>
                                                 <td class="align-middle text-center">{{$user->name}}</td>
                                                 <td class="align-middle text-center">{{$customer->shop_name}}</td>
                                                 <td class="align-middle text-center">{{$data->voucher_no}}</td>
                                                  <td class="align-middle text-center">{{$data->total}}</td>
-                                                <td class="align-middle text-center">
-                                                    <form id="info{{$data->id}}" action="{{route('salesorderinfo')}}" method="POST" class="d-none">
-                                                        @csrf
-                                                        @method('GET')
-                                                        <input type="text" name="id" value="{{$data->id}}">
-                                                        <input type="text" name="cid" value="{{$data->customer_id}}">
-                                                      </form>
-                                                    <button class="btn btn-outline-info" onclick="document.getElementById('info{{$data->id}}').submit();">
-                                                        <i class="fas fa-info"></i>
-                                                    </button>
-
-                                                   
-                                                </td>
                                             </tr>
                                         @endforeach
                                     </tbody>
@@ -216,11 +175,12 @@ if (isset($_SESSION['nav'])) {
                                     <thead>
                                         <tr>
                                             <th class="align-middle text-center">No</th>
+                                            <th class="align-middle text-center">Order Date</th>
                                             <th class="align-middle text-center">Sales Staff</th>
                                             <th class="align-middle text-center">Shop Name</th>
                                             <th class="align-middle text-center">Voucher No</th>
                                             <th class="align-middle text-center">Total</th>
-                                            <th class="align-middle text-center">Action</th>
+                                            
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -230,30 +190,14 @@ if (isset($_SESSION['nav'])) {
                                         @foreach ($confirm_orders as $data)
                                             <tr>
                                                 <td class="align-middle text-center">{{$i++}}</td>
+                                                <td class="align-middle text-center">{{$data->order_date}}</td>
+
                                                 <td class="align-middle text-center">{{$user->name}}</td>
                                                 <td class="align-middle text-center">{{$customer->shop_name}}</td>
                                                 <td class="align-middle text-center">{{$data->voucher_no}}</td>
                                                  <td class="align-middle text-center">{{$data->total}}</td>
-                                                <td class="align-middle text-center">
-                                                    <form id="info{{$data->id}}" action="{{route('salesorderinfo')}}" method="POST" class="d-none">
-                                                        @csrf
-                                                        @method('GET')
-                                                        <input type="text" name="id" value="{{$data->id}}">
-                                                        <input type="text" name="cid" value="{{$data->customer_id}}">
-                                                      </form>
-                                                    <button class="btn btn-outline-info" onclick="document.getElementById('info{{$data->id}}').submit();">
-                                                        <i class="fas fa-info"></i>
-                                                    </button>
-
-                                                   {{--  <form id="deli{{$data->id}}" action="{{route('status')}}" method="POST" class="d-none">
-                                                        @csrf
-                                                        @method('GET')
-                                                        <input type="text" name="id" value="{{$data->id}}">
-                                                        <input type="text" name="status" value="Delivery">                      
-                                                    </form>
-                                                    <a href="{{route('status')}}" class="btn btn-outline-success" onclick="event.preventDefault();document.getElementById('deli{{$data->id}}').submit();">
-                                                        <i class="icofont-home"></i>
-                                                    </a> --}}
+                                              
+                                                   
                                                 </td>
                                             </tr>
                                         @endforeach

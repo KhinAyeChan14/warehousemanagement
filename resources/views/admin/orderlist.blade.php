@@ -13,15 +13,8 @@ $all='';
 $orderStatus = "Order";
 $confirmStatus = "Confirm";
 $deliveryStatus = "Delivery";
-$deleteStatus = "Delete";
 $purchaseStatus = "Purchase";
 
-// temp
-// $_SESSION['startDate']='2020-12-22';
-// $_SESSION['endDate']='2020-12-23';
-// unset($_SESSION['startDate']);
-// unset($_SESSION['endDate']);
-// temp
     if (isset($_SESSION['startDate'])&&isset($_SESSION['endDate'])) {
     // for button active
     $search=' active';
@@ -49,9 +42,7 @@ $purchaseStatus = "Purchase";
     $purchase_orders=Order::where('status','=',$purchaseStatus)
                           ->whereBetween('order_date', [$startDate, $endDate])
                           ->get();
-    $cancel_orders=Order::where('status','=',$deleteStatus)
-                          ->whereBetween('order_date', [$startDate, $endDate])
-                          ->get();
+   
     }elseif(isset($_SESSION['all'])){
     // for button active
     $alls=' active';
@@ -66,7 +57,7 @@ $purchaseStatus = "Purchase";
     $confirm_orders=Order::where('status','=',$confirmStatus)->get();
     $delivery_orders=Order::where('status','=',$deliveryStatus)->get();
     $purchase_orders=Order::where('status','=',$purchaseStatus)->get();
-    $cancel_orders=Order::where('status','=',$deleteStatus)->get();
+   
     }else{
     // for button active
     $today=' active';
@@ -90,9 +81,6 @@ $purchaseStatus = "Purchase";
     $purchase_orders=Order::where('status','=',$purchaseStatus)
                           ->where('order_date',$todayDate)
                           ->get();
-    $cancel_orders=Order::where('status','=',$deleteStatus)
-                          ->where('order_date',$todayDate)
-                          ->get();
     }
 if (isset($_SESSION['nav'])) {
     if ($_SESSION['nav']=='pending') {
@@ -100,36 +88,36 @@ if (isset($_SESSION['nav'])) {
         $confirm='';
         $delivery='';
         $purchase='';
-        $cancel='';
+       
         $pending_tab=' show active';
         $confirm_tab='';
         $delivery_tab='';
         $purchase_tab='';
-        $cancel_tab='';
+        
     }
     if ($_SESSION['nav']=='confirm') {
         $pending='';
         $confirm=' active';
         $delivery='';
         $purchase='';
-        $cancel='';
+        
         $pending_tab='';
         $confirm_tab=' show active';
         $delivery_tab='';
         $purchase_tab='';
-        $cancel_tab='';
+        
     }
     if ($_SESSION['nav']=='delivery') {
         $pending='';
         $confirm='';
         $delivery=' active';
         $purchase='';
-        $cancel='';
+        
         $pending_tab='';
         $confirm_tab='';
         $delivery_tab=' show active';
         $purchase_tab='';
-        $cancel_tab='';
+        
     }
 
     if ($_SESSION['nav']=='purchase') {
@@ -137,36 +125,25 @@ if (isset($_SESSION['nav'])) {
         $confirm='';
         $delivery='';
         $purchase='active';
-        $cancel='';
+        
         $pending_tab='';
         $confirm_tab='';
         $delivery_tab='';
         $purchase_tab='show active';
-        $cancel_tab='';
+        
     }
-    if ($_SESSION['nav']=='cancel') {
-        $pending='';
-        $confirm='';
-        $delivery='';
-        $purchase='';
-        $cancel=' active';
-        $pending_tab='';
-        $confirm_tab='';
-        $delivery_tab='';
-        $purchase_tab='';
-        $cancel_tab=' show active';
-    }
+    
 } else {
     $pending=' active';
     $confirm='';
     $delivery='';
     $purchase='';
-    $cancel='';
+   
     $pending_tab=' show active';
     $confirm_tab='';
     $delivery_tab='';
     $purchase_tab='';
-    $cancel_tab='';
+    
 }
 @endphp
 
@@ -218,7 +195,7 @@ if (isset($_SESSION['nav'])) {
                             <a class="nav-link {{$confirm}} " id="nav-confirm-tab" data-toggle="tab" href="#nav-confirm" role="tab" aria-controls="nav-confirm" aria-selected="false">  Order - Confirm </a>
                             <a class="nav-link {{$delivery}} " id="nav-delivery-tab" data-toggle="tab" href="#nav-delivery" role="tab" aria-controls="nav-delivery" aria-selected="false">  Order - Delivery </a>
                             <a class="nav-link {{$purchase}} " id="nav-purchase-tab" data-toggle="tab" href="#nav-purchase" role="tab" aria-controls="nav-purchase" aria-selected="false">  Order - Purchase </a>
-                            <a class="nav-link {{$cancel}} " id="nav-cancel-tab" data-toggle="tab" href="#nav-cancel" role="tab" aria-controls="nav-cancel" aria-selected="false">  Order - Cancel </a>
+                            
                         </div>
                     </nav>
                     <div class="tab-content" id="nav-tabContent">
@@ -278,15 +255,7 @@ if (isset($_SESSION['nav'])) {
                                                         <i class="fas fa-check"></i>
                                                     </a>
 
-                                                    <form id="delete{{$data->id}}" action="{{route('status')}}" method="POST" class="d-none">
-                                                        @csrf
-                                                        @method('GET')
-                                                        <input type="text" name="id" value="{{$data->id}}">
-                                                        <input type="text" name="status" value="Delete">                                                
-                                                    </form>
-                                                    <a href="{{route('status')}}" class="btn btn-outline-danger" onclick="event.preventDefault();document.getElementById('delete{{$data->id}}').submit();">
-                                                        <i class="fas fa-times"></i>
-                                                    </a>
+                                                    
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -329,15 +298,7 @@ if (isset($_SESSION['nav'])) {
                                                         <i class="fas fa-info"></i>
                                                     </button>
 
-                                                   {{--  <form id="deli{{$data->id}}" action="{{route('status')}}" method="POST" class="d-none">
-                                                        @csrf
-                                                        @method('GET')
-                                                        <input type="text" name="id" value="{{$data->id}}">
-                                                        <input type="text" name="status" value="Delivery">                      
-                                                    </form>
-                                                    <a href="{{route('status')}}" class="btn btn-outline-success" onclick="event.preventDefault();document.getElementById('deli{{$data->id}}').submit();">
-                                                        <i class="icofont-home"></i>
-                                                    </a> --}}
+                                                  
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -437,46 +398,7 @@ if (isset($_SESSION['nav'])) {
                                 </table>
                             </div>
                         </div>
-                        <div class="tab-pane fade {{$cancel_tab}}" id="nav-cancel" role="tabpanel" aria-labelledby="nav-cancel-tab">
-                            <div class="table-responsive">
-                                <table class="table table-hover table-bordered display">
-                                    <thead>
-                                        <tr>
-                                            <th class="align-middle text-center">Sr</th>
-                                            <th class="align-middle text-center">Date</th>
-                                            <th class="align-middle text-center">Voucherno</th>
-                                            <th class="align-middle text-center">Total</th>
-                                            <th class="align-middle text-center">Action</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @php
-                                            $i=1;
-                                        @endphp
-                                        @foreach ($cancel_orders as $data)
-                                            <tr>
-                                                <td class="align-middle text-center">{{$i++}}</td>
-                                                <td class="align-middle text-center">{{$data->order_date}}</td>
-                                                <td class="align-middle text-center">{{$data->voucher_no}}</td>
-                                                <td class="align-middle text-center">{{number_format($data->total)}}</td>
-                                                <td class="align-middle text-center">
-                                                    <form id="info{{$data->id}}" action="{{route('orderinfo')}}" method="POST" class="d-none">
-                                                        @csrf
-                                                        @method('GET')
-                                                        <input type="text" name="id" value="{{$data->id}}">
-                                                        <input type="text" name="cid" value="{{$data->customer_id}}">
-                                                    </form>
-                                                    <button class="btn btn-outline-info" onclick="document.getElementById('info{{$data->id}}').submit();">
-                                                        <i class="fas fa-info"></i>
-                                                    </button>
-                                                </td>
-                                            </tr>
-                                        @endforeach
-                                    </tbody>
-                                </table>
-                            </div>
-                         </div>
-                    </div>
+                        
                 </div>
             </div>
         </div>
@@ -507,9 +429,7 @@ $(document).ready(function(){
      $("#nav-purchase-tab").click(function(){
         setSession('nav','purchase','{{route('nav')}}');
     })
-    $("#nav-cancel-tab").click(function(){
-        setSession('nav','cancel','{{route('nav')}}');
-    })
+   
     function setSession(key,value,url){
         $.ajax({
             url:url,

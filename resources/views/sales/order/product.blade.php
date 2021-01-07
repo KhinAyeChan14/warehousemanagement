@@ -5,65 +5,48 @@
   use App\Way;
   use App\Customer;
   use App\Price_stock;
-  // use Auth;
+
   session_start();
 
   if (isset($_SESSION['way'])) {
-  
-
-  $wayid=$_SESSION['way'];
-  // dd($wayid);  
+  $wayid=$_SESSION['way'];  
   $customerid=$_SESSION['customer'];
-  // dd($customerid);
   $way=Way::find($wayid);
   $customer=Customer::find($customerid);
-  // var_dump($customer->shop_name);
-  // var_dump($way->township).die();
 }
 @endphp
 
 <main class="app-content">
-    <div class="app-title">
-      <div>
-        <h1><i class="fa fa-dashboard"></i> Products</h1>
-      </div>
-      <ul class="app-breadcrumb breadcrumb">
-        <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
-        <li class="breadcrumb-item"><a href="#">Products</a></li>
-      </ul>
-    </div>
 
     <div class="row">
       <div class="col-md-12">
         <div class="tile">
           <div class="tile-body">
-            <h4 class="d-inline-block">Products List</h4>
+            <h4 class="d-inline-block">Select Items to Order!</h4>
             <a  href="{{route('orderdetailspage')}}" class="btn btn-success float-right">Done</a>
             
 
-            <div class="table-responsive mt-3">
+             <div class="table-responsive mt-3">
               <table class="table table-bordered sampleTable">
-                <thead class="thead-dark">
-            <tr>
-              <th class="align-middle text-center" rowspan="2">No</th>
-              <th class="align-middle text-center" rowspan="2">Name</th>
-              <th class="align-middle text-center" colspan="3">Price</th>
-              <th class="align-middle text-center" colspan="3">Stock</th>
-              <th class="align-middle text-center" rowspan="2">Qty</th>
-              <th class="align-middle text-center" rowspan="2">Action</th>
-
-            </tr>
-          <tr>
-              <th class="align-middle text-center">pc</th>
-              <th class="align-middle text-center">dozen</th>
-              <th class="align-middle text-center">set</th>
-              <th class="align-middle text-center">pc</th>
-              <th class="align-middle text-center">dozen</th>
-              <th class="align-middle text-center">set</th>
-
-          </tr>
-          </thead>
-          <tbody>
+                <thead class="thead-light">
+                  <tr>
+                    <th class="align-middle text-center" rowspan="2">No</th>
+                    <th class="align-middle text-center" rowspan="2">Name</th>
+                    <th class="align-middle text-center" colspan="3">Price</th>
+                    <th class="align-middle text-center" colspan="3">Stock</th>
+                    <th class="align-middle text-center" rowspan="2">Qty</th>
+                    <th class="align-middle text-center" rowspan="2">Action</th>
+                  </tr>
+                  <tr>
+                    <th class="align-middle text-center">pc</th>
+                    <th class="align-middle text-center">dozen</th>
+                    <th class="align-middle text-center">set</th>
+                    <th class="align-middle text-center">pc</th>
+                    <th class="align-middle text-center">dozen</th>
+                    <th class="align-middle text-center">set</th>
+                  </tr>
+              </thead>
+              <tbody>
             @php
               $j=0;
               @endphp
@@ -159,9 +142,9 @@
 
 <script type="text/javascript">
   
-$(document).ready(function(){
+  $(document).ready(function(){
 
-if (localStorage.getItem("item")) {
+    if (localStorage.getItem("item")) {
   var string=localStorage.getItem("item");
   var myArray=JSON.parse(string);
   myArray.forEach(function(v,i){
@@ -297,7 +280,9 @@ if (localStorage.getItem("item")) {
               $('#dc'+id).attr('style','text-shadow: 1px 1px red'); 
               $('#sc'+id).attr('style','');
             }else{
-              // $('#sc'+id).text(ans);
+              $('#dc'+id).text(ans.doz);
+              $('#sc'+id).text(ans.set);
+              $('#pc'+id).text(ans.pcs);
               $('#pc'+id).attr('style','');
               $('#dc'+id).attr('style','');
               $('#sc'+id).attr('style','text-shadow: 1px 1px red'); 

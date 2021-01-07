@@ -22,12 +22,13 @@
 
     <div class="app-title">
       <div>
-        <h1><i class="fa fa-dashboard"></i>Current Way</h1>
-        <p>{{ $way->township }}</p>
+        <h4></i>Current Way</h4>
+        <h5>{{ $way->township }}, {{ $way->road }}</h5>
       </div>
 
       <div>
-        <a class="btn btn-success btn-md changeWay">Change Way</a>
+        {{-- <a class="btn btn-success btn-md changeWay">Change Way</a> --}}
+        <button type="button" class="btn btn-outline-dark btn-lg changeWay">Change Way</button>
       </div>
       
     </div>
@@ -37,10 +38,11 @@
         <div class="tile">
           <div class="tile-body">
             <h4 class="d-inline-block">Customers List</h4>
+            
 
             <div class="table-responsive mt-3">
-              <table class="table table-bordered sampleTable" >
-                <thead class="thead-dark">
+              <table class="table table-bordered sampleTable">
+               <thead class="thead-dark">
                   <tr>
                     <th>No</th>
                     <th>Shop Name</th>
@@ -49,7 +51,7 @@
                     <th>Action</th>
                   </tr>
                 </thead>
-                <tbody">
+                <tbody>
                  @php
                  $j=0;
                  @endphp
@@ -123,15 +125,15 @@
       </div>      
 
 
-     <div class="row" id="customer"  style="display: none;">
+    <div class="row" id="customer"  {{-- style="display: none;" --}}>
       <div class="col-md-12">
         <div class="tile">
           <div class="tile-body">
-            <h4 class="d-inline-block">Customer List</h4>
+            <h4 class="d-inline-block">Customers List</h4>
+            
 
-             <div class="table-responsive mt-3">
-
-              <table class="table table-bordered sampleTable">
+            <div class="table-responsive mt-3">
+              <table class="table table-bordered" id="table">
                <thead class="thead-dark">
                 <tr>
                   <th>No</th>
@@ -194,7 +196,7 @@
                          <td>${v.shop_name}</td>
                          <td>${v.phone}</td>
                          <td>${v.address}</td>
-                         <td><button class="btn btn-warning btn-sm chooseCustomer" data-wid="{{$way->id}}" data-cid="${v.id}">Choose</button></td>
+                         <td><button class="btn btn-warning btn-sm chooseCustomer" data-wid="{{$way->id}}" data-cid="${v.id}">Choose1</button></td>
                        </tr>`
                     });
 
@@ -266,5 +268,12 @@
 
 </script>
 
-  
+@endsection
+
+@section('tablescript')
+ {{-- Datatable --}}
+    <script type="text/javascript" src="{{asset('assets/js/plugins/jquery.dataTables.min.js')}}"></script>
+    <script type="text/javascript" src="{{asset('assets/js/plugins/dataTables.bootstrap.min.js')}}"></script>
+    <script type="text/javascript">$('#table').DataTable();</script>
+
 @endsection
