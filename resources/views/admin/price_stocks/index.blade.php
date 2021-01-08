@@ -54,7 +54,7 @@
               </table>
             </div>
 
-             <a  href="{{route('price_stocks.create')}}" class="btn btn-success float-right mt-5">Add New</a>
+             <a  href="{{route('price_stocks.create')}}" class="btn btn-success float-right mt-5" style="color: #009688">Add New</a>
           </div>
         </div>
       </div>   

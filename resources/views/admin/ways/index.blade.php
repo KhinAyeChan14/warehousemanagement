@@ -17,7 +17,7 @@
         <div class="tile">
           <div class="tile-body">
             <h4 class="d-inline-block">Ways List</h4>
-            <a  href="{{route('ways.create')}}" class="btn btn-success float-right">Add New</a>
+            <a  href="{{route('ways.create')}}" class="btn btn-light float-right" style="color: #009688">Add New</a>
             
 
             <div class="table-responsive mt-3">

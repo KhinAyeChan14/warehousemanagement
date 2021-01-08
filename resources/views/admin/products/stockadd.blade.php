@@ -61,7 +61,7 @@
               </div>
 
               <div class="form-group">
-                <input type="submit" name="btn-submit" value="Add" class="btn btn-primary">
+                <input type="submit" name="btn-submit" value="Add" class="btn btn-light" style="color: #009688">
               </div>
             </form>
           </div>

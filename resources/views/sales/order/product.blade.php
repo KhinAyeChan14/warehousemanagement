@@ -25,7 +25,7 @@
         <div class="tile">
           <div class="tile-body">
             <h4 class="d-inline-block">Select Items to Order!</h4>
-            <a  href="{{route('orderdetailspage')}}" class="btn btn-success float-right">Done</a>
+            <a  href="{{route('orderdetailspage')}}" class="btn btn-light float-right" style="color: #009688">Done</a>
             
              <div class="table-responsive mt-3">
               <table class="table table-bordered sampleTable" >
@@ -112,7 +112,7 @@
                     </td>
                     <td class="align-middle text-center">    
                     {{-- <a href="#" class="btn btn-warning btn-sm">Details</a> --}}
-                    <button id='bt{{ $product->id }}' class="btn btn-warning btn-sm order"
+                    <button id='bt{{ $product->id }}' class="btn btn-light btn-sm order" style="color: #009688"
                       @guest
                       data-user='none'
                       @else                      

@@ -27,7 +27,7 @@
   
   <body class="app sidebar-mini">
     <!-- Navbar-->
-    <header class="app-header"><a class="app-header__logo" href="index.html">Vali</a>
+    <header class="app-header"><a class="app-header__logo" href="index.html">Sonic</a>
       <!-- Sidebar toggle button--><a class="app-sidebar__toggle" href="#" data-toggle="sidebar" aria-label="Hide Sidebar"></a>
       <!-- Navbar Right Menu-->
       <ul class="app-nav">
@@ -102,8 +102,8 @@
     <aside class="app-sidebar">
       <div class="app-sidebar__user">
         <div>
-          <p class="app-sidebar__user-name">{{ Auth::user()->name}}</p>
-          <p class="app-sidebar__user-designation mt-3">Sales Staff</p>
+          <p class="app-sidebar__user-name"><i>{{ Auth::user()->name}}</i></p>
+          <p class="app-sidebar__user-designation mt-3"><i>Sales Staff</i></p>
         </div>
       </div>
 

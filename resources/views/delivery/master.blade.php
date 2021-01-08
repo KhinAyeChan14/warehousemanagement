@@ -26,7 +26,7 @@
   </head>
   <body class="app sidebar-mini">
     <!-- Navbar-->
-    <header class="app-header"><a class="app-header__logo" href="index.html">Vali</a>
+    <header class="app-header"><a class="app-header__logo" href="index.html">Sonic</a>
       <!-- Sidebar toggle button--><a class="app-sidebar__toggle" href="#" data-toggle="sidebar" aria-label="Hide Sidebar"></a>
       <!-- Navbar Right Menu-->
       <ul class="app-nav">
@@ -100,8 +100,8 @@
     <aside class="app-sidebar">
       <div class="app-sidebar__user">{{-- img class="app-sidebar__user-avatar" src="https://s3.amazonaws.com/uifaces/faces/twitter/jsa/48.jpg" alt="User Image"> --}}
         <div>
-          <p class="app-sidebar__user-name">{{  Auth::user()->name}}</p>
-          <p class="app-sidebar__user-designation mt-3"> Delivery Man </p>
+          <p class="app-sidebar__user-name"><i>{{  Auth::user()->name}}</i></p>
+          <p class="app-sidebar__user-designation mt-3"> <i>Delivery Man</i> </p>
         </div>
       </div>
 

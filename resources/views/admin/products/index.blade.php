@@ -22,11 +22,11 @@
         <div class="tile">
           <div class="tile-body">
             <h4 class="d-inline-block">Products List</h4>
-            <a  href="{{route('products.create')}}" class="btn btn-success float-right">Add New</a>     
+            <a  href="{{route('products.create')}}" class="btn btn-light float-right" style="color: #009688">Add New</a>     
 
              <div class="table-responsive mt-3">
               <table class="table table-bordered" id="sampleTable">
-                <thead class="thead-dark">
+                <thead class="thead-light">
                   <tr>
                     <th class="align-middle text-center" rowspan="2" width="7%">No</th>
                     <th class="align-middle text-center" rowspan="2" width="13%">Code</th>
@@ -64,20 +64,20 @@
                     <td>{{$pricestock->sets_count}}</td>
                     
                     <td  class="align-middle text-center">
-                      <a href="{{route('products.edit',$product->id)}}" class="btn btn-warning btn-sm">Edit</a>
+                      <a href="{{route('products.edit',$product->id)}}" class="btn btn-outline-light btn-sm" style="color: #009688">Edit</a>
                       <form id="plus{{$product->id}}" action="{{route('stockadd')}}" method="POST" class="d-none">
                         @csrf
                         @method('GET')
                         <input type="" name="id" value="{{ $product->id }}">
                         <input type="" name="state" value="idcarried">
                       </form>
-                      <a href="" class="btn btn-success btn-sm"
+                      <a href="" class="btn btn-light btn-sm" style="color: #009688"
                       onclick="event.preventDefault();document.getElementById('plus{{$product->id}}').submit();">Add</a>
 
                       <form method="post" action="{{route('products.destroy',$product->id)}}" onsubmit="return confirm('Are you sure?')" class="d-inline-block">
                         @csrf
                         @method('DELETE')
-                        <input type="submit" name="btnsubmit" class="btn btn-danger btn-sm" value="Delete">
+                        <input type="submit" name="btnsubmit" class="btn btn-light btn-sm" style="color: #009688" value="Delete">
                       </form>
                     </td>
                   </tr>

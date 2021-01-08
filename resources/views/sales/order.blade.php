@@ -28,7 +28,7 @@
 
       <div>
         {{-- <a class="btn btn-success btn-md changeWay">Change Way</a> --}}
-        <button type="button" class="btn btn-outline-dark btn-lg changeWay">Change Way</button>
+        <button type="button" class="btn btn-outline-light btn-lg changeWay" style="color: #009688">Change Way</button>
       </div>
       
     </div>
@@ -41,8 +41,8 @@
             
 
             <div class="table-responsive mt-3">
-              <table class="table sampleTable">
-               <thead class="thead-dark">
+              <table class="table table-striped sampleTable">
+               <thead class="thead-light">
                   <tr>
                     <th>No</th>
                     <th>Shop Name</th>
@@ -63,7 +63,7 @@
                   <td>{{ $customer->phone }}</td>
                   <td>{{ $customer->address }}</td>   
                   <td>
-                    <button class="btn btn-warning btn-sm chooseCustomer" data-wid="{{$way->id}}" data-cid="{{ $customer->id}}">Choose</button>
+                    <button class="btn btn-light btn-sm chooseCustomer" style="color: #009688" data-wid="{{$way->id}}" data-cid="{{ $customer->id}}">Choose</button>
 
                   </td>
                  </tr>
@@ -94,8 +94,8 @@
             
 
             <div class="table-responsive mt-3">
-              <table class="table sampleTable">
-               <thead class="thead-dark">
+              <table class="table table-striped sampleTable">
+               <thead class="thead-light">
                 <tr>
                   <th>No</th>
                   <th>Township</th>
@@ -111,7 +111,7 @@
                   <td>{{ $way->township }}</td>
                   <td>{{ $way->road }}</td>
                   <td>
-                    <a class="btn btn-warning btn-sm chooseWay" data-id="{{$way->id}}">Choose</a>
+                    <a class="btn btn-light btn-sm chooseWay" style="color: #009688" data-id="{{$way->id}}">Choose</a>
                   </td>   
                 </tr>
                 @endforeach
@@ -133,8 +133,8 @@
             
 
             <div class="table-responsive mt-3">
-              <table class="table sampleTable">
-               <thead class="thead-dark">
+              <table class="table table-striped sampleTable">
+               <thead class="thead-light">
                 <tr>
                   <th>No</th>
                   <th>Shop Name</th>
@@ -144,7 +144,7 @@
                 </tr>
               </thead>
               <tbody id="appendcustomer">
-                {{-- <tr></tr> --}}
+                <tr></tr>
 
               </tbody>
               </table>
@@ -197,7 +197,7 @@
                          <td>${v.shop_name}</td>
                          <td>${v.phone}</td>
                          <td>${v.address}</td>
-                         <td><button class="btn btn-warning btn-sm chooseCustomer" data-wid="{{$way->id}}" data-cid="${v.id}">Choose</button></td>
+                         <td><button class="btn btn-light btn-sm chooseCustomer" style="color: #009688" data-wid="{{$way->id}}" data-cid="${v.id}">Choose</button></td>
                        </tr>`
                     });
 
