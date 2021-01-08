@@ -98,10 +98,10 @@
     <!-- Sidebar menu-->
     <div class="app-sidebar__overlay" data-toggle="sidebar"></div>
     <aside class="app-sidebar">
-      <div class="app-sidebar__user"><img class="app-sidebar__user-avatar" src="https://s3.amazonaws.com/uifaces/faces/twitter/jsa/48.jpg" alt="User Image">
+      <div class="app-sidebar__user">{{-- img class="app-sidebar__user-avatar" src="https://s3.amazonaws.com/uifaces/faces/twitter/jsa/48.jpg" alt="User Image"> --}}
         <div>
-          <p class="app-sidebar__user-name">{{-- Auth::user()->id --}}</p>
-          <p class="app-sidebar__user-designation">Delivery</p>
+          <p class="app-sidebar__user-name">{{  Auth::user()->name}}</p>
+          <p class="app-sidebar__user-designation mt-3"> Delivery Man </p>
         </div>
       </div>
 
@@ -116,7 +116,7 @@
           </ul>
         </li> --}}
 
-         <li><a class="app-menu__item" href="{{ route('confirmpage') }}"><i class="app-menu__icon fa fa-file-code-o"></i><span class="app-menu__label">Delivery</span></a></li>
+         <li><a class="app-menu__item" href="{{ route('confirmpage') }}"><i class="fas fa-clipboard-list float-lg-left "></i></i><span class="app-menu__label ml-3">Delivery List</span></a></li>
 
         {{--  <li><a class="app-menu__item" href="{{ route('confirmpage') }}"><i class="app-menu__icon fa fa-file-code-o"></i><span class="app-menu__label">Orders</span></a></li> --}}
 

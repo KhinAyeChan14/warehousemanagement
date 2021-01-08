@@ -13,7 +13,7 @@
             
 
             <div class="table-responsive mt-3">
-              <table class="table table-bordered sampleTable">
+              <table class="table table-striped sampleTable">
                 <thead class="thead-dark">
                   <tr>
                     <th>#</th>
@@ -52,3 +52,10 @@
   </main>
 @endsection
 
+@section('tablescript')
+  {{-- Datatable --}}
+    <script type="text/javascript" src="{{asset('assets/js/plugins/jquery.dataTables.min.js')}}"></script>
+    <script type="text/javascript" src="{{asset('assets/js/plugins/dataTables.bootstrap.min.js')}}"></script>
+    <script type="text/javascript">$('.sampleTable').DataTable();</script>
+
+@endsection

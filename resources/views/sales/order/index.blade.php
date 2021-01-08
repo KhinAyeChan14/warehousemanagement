@@ -113,9 +113,9 @@ if (isset($_SESSION['nav'])) {
         <div class="col-md-12">
             <div class="tile">
                 <h3 class="tile-title">Order History </h3>
-                <div class="tile-body">
+               {{--  <div class="tile-body">
                     
-                </div>
+                </div> --}}
             </div>
 
             <div class="tile">
@@ -136,6 +136,7 @@ if (isset($_SESSION['nav'])) {
                                             <th class="align-middle text-center">Order Date</th>
                                             <th class="align-middle text-center">Sales Staff</th>
                                             <th class="align-middle text-center">Shop Name</th>
+                                            <th class="align-middle text-center">Address</th>
                                             <th class="align-middle text-center">Voucher No</th>
                                             <th class="align-middle text-center">Total</th>
                                         </tr>
@@ -161,8 +162,9 @@ if (isset($_SESSION['nav'])) {
                                                 <td class="align-middle text-center">{{$data->order_date}}</td>
                                                 <td class="align-middle text-center">{{$user->name}}</td>
                                                 <td class="align-middle text-center">{{$customer->shop_name}}</td>
+                                                <td class="align-middle text-center">{{$customer->address}}</td>
                                                 <td class="align-middle text-center">{{$data->voucher_no}}</td>
-                                                 <td class="align-middle text-center">{{$data->total}}</td>
+                                                 <td class="align-middle text-center">{{number_format($data->total)}}  Ks</td>
                                             </tr>
                                         @endforeach
                                     </tbody>
@@ -178,6 +180,7 @@ if (isset($_SESSION['nav'])) {
                                             <th class="align-middle text-center">Order Date</th>
                                             <th class="align-middle text-center">Sales Staff</th>
                                             <th class="align-middle text-center">Shop Name</th>
+                                            <th class="align-middle text-center">Address</th>
                                             <th class="align-middle text-center">Voucher No</th>
                                             <th class="align-middle text-center">Total</th>
                                             
@@ -194,8 +197,9 @@ if (isset($_SESSION['nav'])) {
 
                                                 <td class="align-middle text-center">{{$user->name}}</td>
                                                 <td class="align-middle text-center">{{$customer->shop_name}}</td>
+                                                <td class="align-middle text-center">{{$customer->address}}</td>
                                                 <td class="align-middle text-center">{{$data->voucher_no}}</td>
-                                                 <td class="align-middle text-center">{{$data->total}}</td>
+                                                 <td class="align-middle text-center">{{number_format($data->total)}} Ks</td>
                                               
                                                    
                                                 </td>

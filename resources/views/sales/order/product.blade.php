@@ -9,12 +9,14 @@
   session_start();
 
   if (isset($_SESSION['way'])) {
+
   $wayid=$_SESSION['way'];  
   $customerid=$_SESSION['customer'];
   $way=Way::find($wayid);
   $customer=Customer::find($customerid);
 }
 @endphp
+
 
 <main class="app-content">
 
@@ -25,9 +27,8 @@
             <h4 class="d-inline-block">Select Items to Order!</h4>
             <a  href="{{route('orderdetailspage')}}" class="btn btn-success float-right">Done</a>
             
-
              <div class="table-responsive mt-3">
-              <table class="table table-bordered sampleTable">
+              <table class="table table-bordered sampleTable" >
                 <thead class="thead-light">
                   <tr>
                     <th class="align-middle text-center" rowspan="2">No</th>
@@ -47,11 +48,12 @@
                   </tr>
               </thead>
               <tbody>
-            @php
-              $j=0;
-              @endphp
+                @php
+                  $j=0;
+                @endphp
               @foreach($products as $product)
-                        
+                  
+                  {{-- <tr></tr>       --}}
               <tr>
                 @php
                 $j+=1;
@@ -69,7 +71,7 @@
                         style=""
                         data-active='0'
                       >
-                        {{ $product->price_stock->pc_price }}
+                        {{number_format( $product->price_stock->pc_price) }}
                       </span> 
                     </td>
                     <td class="align-middle text-right">
@@ -81,7 +83,7 @@
                         style=""
                         data-active='0'
                     >
-                      {{ $product->price_stock->dozen_price }}
+                      {{number_format($product->price_stock->dozen_price) }}
                       </span>
                     </td>
                     <td class="align-middle text-right">
@@ -93,7 +95,7 @@
                       style=""
                       data-active='0'
                     >
-                     {{ $product->price_stock->set_price }} 
+                     {{ number_format($product->price_stock->set_price) }} 
                     </span>
                    </td>
                     <td  class="align-middle text-right">
@@ -136,6 +138,10 @@
   </main>
 
 
+
+
+
+
 @endsection
 
 @section('script')
@@ -145,10 +151,11 @@
   $(document).ready(function(){
 
     if (localStorage.getItem("item")) {
-  var string=localStorage.getItem("item");
-  var myArray=JSON.parse(string);
-  myArray.forEach(function(v,i){
+    var string=localStorage.getItem("item");
+    var myArray=JSON.parse(string);
+    myArray.forEach(function(v,i){
     $('#qty'+v.id).val(v.qty);
+
       if (v.unit=='pc') {
       $('#sp1'+v.id).attr('style','text-shadow: 1px 1px red'); 
       $('#sp2'+v.id).attr('style',''); 
@@ -301,8 +308,22 @@
 
 
   });
+
 });
 
 </script>
 
 @endsection
+
+
+@section('tablescript')
+
+
+ {{-- Datatable --}}
+    <script type="text/javascript" src="{{asset('assets/js/plugins/jquery.dataTables.min.js')}}"></script>
+    <script type="text/javascript" src="{{asset('assets/js/plugins/dataTables.bootstrap.min.js')}}"></script>
+    <script type="text/javascript">$('.sampleTable').DataTable();</script>
+
+@endsection
+
+

@@ -131,6 +131,8 @@ h2
                </form>
 
            </div>
+
      </body>
+     <footer> <a href="{{ route('documentation') }}" class="link-primary" style="margin-left: 50px">Documentation</a></footer>
 </html>
 @endsection

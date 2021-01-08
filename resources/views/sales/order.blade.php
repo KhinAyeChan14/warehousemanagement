@@ -41,7 +41,7 @@
             
 
             <div class="table-responsive mt-3">
-              <table class="table table-bordered sampleTable">
+              <table class="table sampleTable">
                <thead class="thead-dark">
                   <tr>
                     <th>No</th>
@@ -94,7 +94,7 @@
             
 
             <div class="table-responsive mt-3">
-              <table class="table table-bordered sampleTable">
+              <table class="table sampleTable">
                <thead class="thead-dark">
                 <tr>
                   <th>No</th>
@@ -125,7 +125,7 @@
       </div>      
 
 
-    <div class="row" id="customer"  {{-- style="display: none;" --}}>
+    <div class="row" id="customer"  style="display: none;">
       <div class="col-md-12">
         <div class="tile">
           <div class="tile-body">
@@ -133,7 +133,7 @@
             
 
             <div class="table-responsive mt-3">
-              <table class="table table-bordered" id="table">
+              <table class="table sampleTable">
                <thead class="thead-dark">
                 <tr>
                   <th>No</th>
@@ -144,11 +144,12 @@
                 </tr>
               </thead>
               <tbody id="appendcustomer">
-                <tr></tr>
+                {{-- <tr></tr> --}}
 
               </tbody>
               </table>
             </div>
+            
           </div>
         </div>
       </div>   
@@ -196,7 +197,7 @@
                          <td>${v.shop_name}</td>
                          <td>${v.phone}</td>
                          <td>${v.address}</td>
-                         <td><button class="btn btn-warning btn-sm chooseCustomer" data-wid="{{$way->id}}" data-cid="${v.id}">Choose1</button></td>
+                         <td><button class="btn btn-warning btn-sm chooseCustomer" data-wid="{{$way->id}}" data-cid="${v.id}">Choose</button></td>
                        </tr>`
                     });
 
@@ -271,9 +272,9 @@
 @endsection
 
 @section('tablescript')
- {{-- Datatable --}}
+  {{-- Datatable --}}
     <script type="text/javascript" src="{{asset('assets/js/plugins/jquery.dataTables.min.js')}}"></script>
     <script type="text/javascript" src="{{asset('assets/js/plugins/dataTables.bootstrap.min.js')}}"></script>
-    <script type="text/javascript">$('#table').DataTable();</script>
+    <script type="text/javascript">$('.sampleTable').DataTable();</script>
 
 @endsection

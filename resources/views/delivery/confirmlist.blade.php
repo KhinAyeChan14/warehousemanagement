@@ -338,11 +338,11 @@ $(document).ready(function(){
                 // alert("Success");
                 if (data){
                     if (data=='today') {
-                        location.href= '{{route('orderlistpage')}}';
+                        location.href= '{{route('confirmpage')}}';
                     }else if (data=='all') {
-                        location.href= '{{route('orderlistpage')}}';
+                        location.href= '{{route('confirmpage')}}';
                     }else{
-                        location.href= '{{route('orderlistpage')}}';
+                        location.href= '{{route('confirmpage')}}';
                     }
                 }
             }

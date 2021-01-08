@@ -96,11 +96,14 @@ class ProductController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Product  $product
+     * @param  \App\Product  $product
+
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Product $product, Price_stock $price_stock)
+    public function update(Request $request,Product $product,Price_stock $price_stock)
     {
         
+        // dd($product->id);
         $product->code_no = $request->codeno;
         $product->name = $request->name;
         $product->photo = $request->photo;
@@ -109,7 +112,8 @@ class ProductController extends Controller
         $product->brand_id = $request->brandid;
         $product->save();
 
-        
+        $price_stock=Price_stock::where('product_id','=',$product->id)->first();
+        // dd($product->id);
         $price_stock->pc_price = $request->pcprice;
         $price_stock->dozen_price = $request->dozenprice;
         $price_stock->set_price = $request->setprice;
@@ -122,6 +126,9 @@ class ProductController extends Controller
         return redirect()->route('products.index');
     }
 
+
+    
+
     /**
      * Remove the specified resource from storage.
      *
@@ -130,7 +137,11 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        $product->delete();
+       
+
+         $price_stock=Price_stock::where('product_id','=',$product->id)->first();
+         $product->delete();
+         $price_stock->delete();
         // redirect
         return redirect()->route('products.index');
     }
@@ -155,10 +166,15 @@ class ProductController extends Controller
             $count='sets_count';
         }
 
-        $product=Price_stock::where('product_id','=', $id)->get();
+        // $product=Price_stock::where('product_id','=', $id)->get();
         //     ->sharedLock()
         //     ->lockForUpdate()
         //     ->get();
+
+        $product=Price_stock::where('product_id','=', $id)
+                 ->sharedLock()
+                 ->lockForUpdate()
+                 ->get();
 
         // if ($newQty>$oldQty) {
         $ans=array(
@@ -169,8 +185,12 @@ class ProductController extends Controller
         );
         if ($product[0]->$count<($newQty-$oldQty)) {
             if ($count=='pcs_count') {
-                $debt_temp=round(($newQty)/12,0);   //ans 2
+                $debt_temp=round(($newQty)/12,0); 
+                if($debt_temp<1){
+                    $debt_temp=1;
+                }
                 $bal_temp=(($debt_temp*12)+$product[0]->$count)-$newQty;
+
                 if ($bal_temp>=12) { // 22 ~ 12
                     $debt_temp--;
                 }
@@ -198,6 +218,10 @@ class ProductController extends Controller
             }elseif ($count=='dozens_count') {
                  // dd('kdkdk');
                 $debt_temp=round(($newQty-$oldQty)/8,0);   //ans 2
+                // dd($debt_temp);
+                 if($debt_temp<1){
+                    $debt_temp=1;
+                }
                 $bal_temp=(($debt_temp*8)+$product[0]->$count)-($newQty-$oldQty);
                 if ($bal_temp>=8) { // 22 ~ 12
                     $debt_temp--;
@@ -238,6 +262,39 @@ class ProductController extends Controller
             echo json_encode($ans);
         }        
     });
+    }
+
+      /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Product  $product
+     * @param  \App\Product  $product
+
+     * @return \Illuminate\Http\Response
+     */
+    public function stockadd(Request  $request)
+    {   
+        // dd($request->id);
+        $state=$request->state; // dount see it
+        if ($state=='idcarried') {
+            $id=$request->id;
+            $product=Product::find($id);
+            $price_stock=Price_stock::where('product_id','=',$id)->get();
+            return view('admin.products.stockadd',compact('product'),compact('price_stock'));
+        }elseif ($state=='dbset') {
+            $id=$request->id;
+            $pc=$request->pc;
+            $dozen=$request->dozen;
+            $set=$request->set;
+            $price_stock=Price_stock::where('product_id','=',$id)->first();
+            $price_stock->pcs_count+=$pc;
+            $price_stock->dozens_count+=$dozen;
+            $price_stock->sets_count+=$set;
+            $price_stock->save();
+            return redirect()->route('products.index');
+        }
+
     }
 
 }

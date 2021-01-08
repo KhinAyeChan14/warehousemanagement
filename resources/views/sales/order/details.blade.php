@@ -18,7 +18,7 @@
             
 
             <div class="table-responsive mt-3">
-              <table class="table table-bordered" id="sampleTable">
+              <table class="table table-bordered sampleTable">
                 <thead class="thead-dark">
                   <tr>
                     <th>No</th>
@@ -52,6 +52,9 @@
       // alert("OK");
       itemList=localStorage.getItem("item");
 
+      var nf = new Intl.NumberFormat();
+
+
       if(itemList){
         itemArray=JSON.parse(itemList);
         var html="";
@@ -62,19 +65,22 @@
         itemArray.forEach(function(v,i){
           number+=1;
           subtotal=parseInt(v.price*v.qty);
-            
+          numtotal=nf.format(subtotal); 
+          price=nf.format(v.price)  
           
             html+=`<tr>
             <td>${number}</td>
             <td>${v.name}</td>
             <td><p> ${v.qty}</p></td>
             <td><p> ${v.unit}</p></td>
-            <td><p> ${v.price} Ks</p></td>
-            <td>${subtotal} Ks</td>
+            <td><p> ${price} Ks</p></td>
+            <td><p>${numtotal} Ks</p></td>
             </tr>`
             total+=subtotal;
        });
         
+        total=nf.format(total);
+
         html+=`<tr>
         <td colspan="8">
         <h3 class="text-right">Total: ${total} Ks</h3>
@@ -131,3 +137,10 @@
 @endsection
 
 
+@section('tablescript')
+  {{-- Datatable --}}
+    <script type="text/javascript" src="{{asset('assets/js/plugins/jquery.dataTables.min.js')}}"></script>
+    <script type="text/javascript" src="{{asset('assets/js/plugins/dataTables.bootstrap.min.js')}}"></script>
+    <script type="text/javascript">$('.sampleTable').DataTable();</script>
+
+@endsection

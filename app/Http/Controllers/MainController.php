@@ -57,4 +57,10 @@ class MainController extends Controller
         return view('admin.users',compact('users'));
     }
 
+    public function documentation($value='')
+    {   
+        
+        return view('documentation');
+    }
+
 }

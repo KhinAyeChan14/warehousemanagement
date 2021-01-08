@@ -24,6 +24,7 @@
     <!-- Font-icon css-->
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   </head>
+  
   <body class="app sidebar-mini">
     <!-- Navbar-->
     <header class="app-header"><a class="app-header__logo" href="index.html">Vali</a>
@@ -121,6 +122,10 @@
 
     @yield('content')
 
+     {{-- Datatable --}}
+    <script src="{{asset('assets/js/plugins/jquery.dataTables.min.js')}}"></script>
+    <script type="text/javascript" src="{{asset('assets/js/plugins/dataTables.bootstrap.min.js')}}"></script>
+
 
     <!-- Essential javascripts for application to work-->
     <script src="{{ asset('assets/js/jquery-3.3.1.min.js')}}"></script>
@@ -131,15 +136,11 @@
     <script src="{{ asset('assets/js/plugins/pace.min.js')}}"></script>
     <!-- Page specific javascripts-->
     <script type="text/javascript" src="{{ asset('assets/js/plugins/chart.js')}}"></script>
-
-    {{-- Datatable --}}
-    <script type="text/javascript" src="{{asset('assets/js/plugins/jquery.dataTables.min.js')}}"></script>
-    <script type="text/javascript" src="{{asset('assets/js/plugins/dataTables.bootstrap.min.js')}}"></script>
-    <script type="text/javascript">$('.sampleTable').DataTable();</script>
+    
 
 
     
-
+     {{-- <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.7/css/jquery.dataTables.css"> --}}
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
 

@@ -68,6 +68,7 @@ $purchaseStatus = "Purchase";
     $today_chk='checked';
     // for button active
     date_default_timezone_set("Asia/Rangoon");
+    
     $todayDate = date('Y-m-d',strtotime('today'));
     $pending_orders=Order::where('status','=',$orderStatus)
                           ->where('order_date',$todayDate)
@@ -278,9 +279,19 @@ if (isset($_SESSION['nav'])) {
                                     </thead>
                                     <tbody>
                                         @php
-                                            $i=1;
+                                        $i=1;
                                         @endphp
                                         @foreach ($confirm_orders as $data)
+                                        @php
+                                        $uid=$data->user_id;
+                                        $user = User::where('id',$uid)->first();
+                                        // var_dump($user).die();
+                                        $cid=$data->customer_id;
+                                        // var_dump($cid).die();
+
+                                        $customer = Customer::where('id',$cid)->first();
+                                        // var_dump($customer).die();
+                                        @endphp
                                             <tr>
                                                 <td class="align-middle text-center">{{$i++}}</td>
                                                 <td class="align-middle text-center">{{$user->name}}</td>
@@ -324,6 +335,16 @@ if (isset($_SESSION['nav'])) {
                                             $i=1;
                                         @endphp
                                         @foreach ($delivery_orders as $data)
+                                        @php
+                                        $uid=$data->user_id;
+                                        $user = User::where('id',$uid)->first();
+                                        // var_dump($user).die();
+                                        $cid=$data->customer_id;
+                                        // var_dump($cid).die();
+
+                                        $customer = Customer::where('id',$cid)->first();
+                                        // var_dump($customer).die();
+                                        @endphp
                                             <tr>
                                                 <td class="align-middle text-center">{{$i++}}</td>
                                                 <td class="align-middle text-center">{{$user->name}}</td>
@@ -375,6 +396,16 @@ if (isset($_SESSION['nav'])) {
                                             $i=1;
                                         @endphp
                                         @foreach ($purchase_orders as $data)
+                                        @php
+                                        $uid=$data->user_id;
+                                        $user = User::where('id',$uid)->first();
+                                        // var_dump($user).die();
+                                        $cid=$data->customer_id;
+                                        // var_dump($cid).die();
+
+                                        $customer = Customer::where('id',$cid)->first();
+                                        // var_dump($customer).die();
+                                        @endphp
                                             <tr>
                                                 <td class="align-middle text-center">{{$i++}}</td>
                                                 <td class="align-middle text-center">{{$data->order_date}}</td>

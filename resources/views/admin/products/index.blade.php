@@ -28,12 +28,12 @@
               <table class="table table-bordered" id="sampleTable">
                 <thead class="thead-dark">
                   <tr>
-                    <th class="align-middle text-center" rowspan="2">No</th>
-                    <th class="align-middle text-center" rowspan="2">Code</th>
-                    <th class="align-middle text-center" rowspan="2">Name</th>
-                    <th class="align-middle text-center" colspan="3">Price</th>
-                    <th class="align-middle text-center" colspan="3">Stock</th>
-                    <th class="align-middle text-center" rowspan="2">Action</th>
+                    <th class="align-middle text-center" rowspan="2" width="7%">No</th>
+                    <th class="align-middle text-center" rowspan="2" width="13%">Code</th>
+                    <th class="align-middle text-center" rowspan="2" width="20%">Name</th>
+                    <th class="align-middle text-center" colspan="3" width="20%">Price</th>
+                    <th class="align-middle text-center" colspan="3" width="20%">Stock</th>
+                    <th class="align-middle text-center" rowspan="2" width="20%">Action</th>
                   </tr>
                   <tr>
                     <th class="align-middle text-center">pc</th>
@@ -63,8 +63,16 @@
                     <td>{{$pricestock->dozens_count}}</td>
                     <td>{{$pricestock->sets_count}}</td>
                     
-                    <td>
+                    <td  class="align-middle text-center">
                       <a href="{{route('products.edit',$product->id)}}" class="btn btn-warning btn-sm">Edit</a>
+                      <form id="plus{{$product->id}}" action="{{route('stockadd')}}" method="POST" class="d-none">
+                        @csrf
+                        @method('GET')
+                        <input type="" name="id" value="{{ $product->id }}">
+                        <input type="" name="state" value="idcarried">
+                      </form>
+                      <a href="" class="btn btn-success btn-sm"
+                      onclick="event.preventDefault();document.getElementById('plus{{$product->id}}').submit();">Add</a>
 
                       <form method="post" action="{{route('products.destroy',$product->id)}}" onsubmit="return confirm('Are you sure?')" class="d-inline-block">
                         @csrf

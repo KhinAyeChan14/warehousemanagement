@@ -44,6 +44,7 @@ Route::get('way','WayController@session')->name('session');
 Route::resource('price_stocks','PriceStockController');
 Route::get('quantity/reative','ProductController@qty_reactive')->name('qty_reactive');
 
+
 });
 
 // Admin Page
@@ -54,7 +55,7 @@ Route::resource('brands','BrandController');
 Route::resource('subcategories','SubcategoryController');
 Route::get('/changestatus','OrderController@changestatus')->name('changestatuspage');
 Route::get('userlist','MainController@userlist')->name('userpage');
-
+Route::get('stockadd','ProductController@stockadd')->name('stockadd');
 
 });
 
@@ -80,3 +81,5 @@ Route::get('/user','OrderController@user')->name('user');
 
 //Registration
 Route::get('registration', 'AuthController@registration')->name('registerpage');
+
+Route::get('/documentation','MainController@documentation')->name('documentation');
